@@ -4,8 +4,8 @@
 
 
 .Search-logo {
-    margin-top: 60px;
-    width: 400px; /* Define el ancho que desees */
+    margin-top: 5vw;
+    width: 30vw; /* Define el ancho que desees */
     height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
   }
   
@@ -17,15 +17,15 @@
 }
 
 .form-control {
-    margin-top: 30px;
-    width: 500px; /* Define el ancho que desees */
-    height: 40px;
-    border: 1px solid #E39400; /* Define el color y grosor del borde */
+    margin-top: 3vw;
+    width: 38vw; /* Define el ancho que desees */
+    height: 2.8vw;
+    border: 0.1vw solid #E39400; /* Define el color y grosor del borde */
     background-color: rgb(212, 212, 212);
     box-shadow: none; /* Elimina cualquier sombra */
-    font-size: 16px;
+    font-size: 1.6vw;
     text-align: center;
-    border-radius: 6px; /* Ajusta este valor para redondear los bordes */
+    border-radius: 0.6vw; /* Ajusta este valor para redondear los bordes */
   }
 
   input::placeholder {
@@ -33,26 +33,26 @@
   }
 
 .list-control {
-    margin-top: 30px;
-    width: 500px; /* Define el ancho que desees */
-    height: 45px;
-    border: 1px solid #E39400; /* Define el color y grosor del borde */
+    margin-top: 6vw;
+    width: 39vw; /* Define el ancho que desees */
+    height: 3.4vw;
+    border: 0.1vw solid #E39400; /* Define el color y grosor del borde */
     background-color: rgb(212, 212, 212);
     box-shadow: none; /* Elimina cualquier sombra */
-    font-size: 16px;
-    border-radius: 6px; /* Ajusta este valor para redondear los bordes */
+    font-size: 1.6vw;
+    border-radius: 0.6vw; /* Ajusta este valor para redondear los bordes */
 }
   
   .boton {
-    margin-top: 10px; /* Espacio encima del botón */
+    margin-top: 1vw; /* Espacio encima del botón */
     background-color: #E39400;
     border: none; /* Elimina el color del borde */
-    border-radius: 6px; /* Ajusta este valor para redondear los bordes */
+    border-radius: 0.6vw; /* Ajusta este valor para redondear los bordes */
     color: white; /* Color del texto dentro del botón */
-    font-size: 16px;
+    font-size: 1.6vw;
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    width: 160px; /* Define el ancho que desees */
-    height: 30px;
+    width: 12vw; /* Define el ancho que desees */
+    height: 2.5vw;
     
 
   }
