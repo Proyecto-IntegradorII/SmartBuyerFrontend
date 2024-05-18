@@ -1,0 +1,86 @@
+.Search {
+    text-align: center;
+}
+
+
+.Search-logo {
+    margin-top: 5vw;
+    width: 30vw; /* Define el ancho que desees */
+    height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+  }
+  
+.Search-header {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    flex-direction: column; /* Coloca los elementos en columna */
+}
+
+.form-control {
+    margin-top: 3vw;
+    width: 38vw; /* Define el ancho que desees */
+    height: 2.8vw;
+    border: 0.1vw solid #E39400; /* Define el color y grosor del borde */
+    background-color: rgb(212, 212, 212);
+    box-shadow: none; /* Elimina cualquier sombra */
+    font-size: 1.6vw;
+    text-align: center;
+    border-radius: 0.6vw; /* Ajusta este valor para redondear los bordes */
+  }
+
+  .form-contro {
+    margin-top: 2vw;
+    width: 38vw; /* Define el ancho que desees */
+    height: 10vw;
+    border: 0.1vw solid #E39400; /* Define el color y grosor del borde */
+    background-color: rgb(212, 212, 212);
+    box-shadow: none; /* Elimina cualquier sombra */
+    font-size: 1.6vw;
+    text-align: center;
+    border-radius: 1vw; /* Ajusta este valor para redondear los bordes */
+  }
+
+  p {
+    font-size: 1.6vw;
+  }
+
+
+  .form-list {
+    width: 38vw; /* Define el ancho que desees */
+    height: 2.8vw;
+    border: 0.1vw solid #E39400; /* Define el color y grosor del borde */
+    background-color: rgb(212, 212, 212);
+    box-shadow: none; /* Elimina cualquier sombra */
+    font-size: 1.6vw;
+    text-align: center;
+    border-radius: 0.5vw; /* Ajusta este valor para redondear los bordes */
+  }
+
+  input::placeholder {
+    color: black; /* Cambia el color por el que desees */
+  }
+
+.list-control {
+    margin-top: 6vw;
+    width: 39vw; /* Define el ancho que desees */
+    height: 3.4vw;
+    border: 0.1vw solid #E39400; /* Define el color y grosor del borde */
+    background-color: rgb(212, 212, 212);
+    box-shadow: none; /* Elimina cualquier sombra */
+    font-size: 1.6vw;
+    border-radius: 0.6vw; /* Ajusta este valor para redondear los bordes */
+}
+  
+  .boton {
+    margin-top: 1vw; /* Espacio encima del botón */
+    background-color: #E39400;
+    border: none; /* Elimina el color del borde */
+    border-radius: 0.6vw; /* Ajusta este valor para redondear los bordes */
+    color: white; /* Color del texto dentro del botón */
+    font-size: 1.6vw;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    width: 12vw; /* Define el ancho que desees */
+    height: 2.5vw;
+    
+
+  }
