@@ -1,0 +1,58 @@
+.Search {
+    text-align: center;
+}
+
+
+.Search-logo {
+    margin-top: 60px;
+    width: 400px; /* Define el ancho que desees */
+    height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+  }
+  
+.Search-header {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    flex-direction: column; /* Coloca los elementos en columna */
+}
+
+.form-control {
+    margin-top: 30px;
+    width: 500px; /* Define el ancho que desees */
+    height: 40px;
+    border: 1px solid #E39400; /* Define el color y grosor del borde */
+    background-color: rgb(212, 212, 212);
+    box-shadow: none; /* Elimina cualquier sombra */
+    font-size: 16px;
+    text-align: center;
+    border-radius: 6px; /* Ajusta este valor para redondear los bordes */
+  }
+
+  input::placeholder {
+    color: black; /* Cambia el color por el que desees */
+  }
+
+.list-control {
+    margin-top: 30px;
+    width: 500px; /* Define el ancho que desees */
+    height: 45px;
+    border: 1px solid #E39400; /* Define el color y grosor del borde */
+    background-color: rgb(212, 212, 212);
+    box-shadow: none; /* Elimina cualquier sombra */
+    font-size: 16px;
+    border-radius: 6px; /* Ajusta este valor para redondear los bordes */
+}
+  
+  .boton {
+    margin-top: 10px; /* Espacio encima del botón */
+    background-color: #E39400;
+    border: none; /* Elimina el color del borde */
+    border-radius: 6px; /* Ajusta este valor para redondear los bordes */
+    color: white; /* Color del texto dentro del botón */
+    font-size: 16px;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    width: 160px; /* Define el ancho que desees */
+    height: 30px;
+    
+
+  }
