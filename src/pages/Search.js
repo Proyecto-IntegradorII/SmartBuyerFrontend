@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './Search.css';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaMicrophone } from 'react-icons/fa';
 
 function Search() {
   const [search, setSearch] = useState("")
@@ -49,6 +49,8 @@ function Search() {
               onChange={handleInputChange}
               style={{ marginRight: '10px' }}
           />
+          <FaMicrophone className="input-icon"  />
+
           <p>Tu lista actualmente se ve así:</p>
           {lista.map((texto, index) => (
             <div key={index} className="input-with-icon">
@@ -66,7 +68,19 @@ function Search() {
           ))}
         <button  className="boton" type="submit"    style={{ margin: '1vw', padding: 0 }} >Buscar</button>
    
-        </header>
+        </header >
+        <h2 style={{ marginRight: '16vw', fontSize: '2vw', fontWeight: 'normal' }}>Tu lista será cotizada automáticamente en:</h2>
+        <div className="image-boxes-container">
+          <div className="image-box" style={{ backgroundImage: 'url(/images/images.png)' }}>
+            <div className="image-name">Exito</div>
+          </div>
+          <div className="image-box" style={{ backgroundImage: 'url(/images/D1.jpg)' }}>
+            <div className="image-name">D1</div>
+          </div>
+          <div className="image-box" style={{ backgroundImage: 'url(/images/jumbo.jpg)' }}>
+            <div className="image-name">Jumbo</div>
+          </div>
+        </div>
       </div>
     );
   }
