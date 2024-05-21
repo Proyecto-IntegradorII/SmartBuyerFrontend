@@ -85,6 +85,47 @@
 
   }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities; 
+
+  .input-icon {
+    position: absolute;
+    margin-left: 35vw; /* Ajusta la posición del icono */
+    margin-top: 12.5vw;
+    font-size: 2vw; /* Ajusta el tamaño del icono */
+    cursor: pointer;
+  }
+
+
+  .image-boxes-container {
+    display: flex;
+    justify-content: center; /* Cambiado a 'center' para alinear los cuadros en el centro */
+    gap: 6vw; /* Espacio entre los cuadros */
+    
+  }
+  
+  .image-box {
+    width: 14vw;
+    height: 14vw;
+    background-size: cover;
+    background-position: center;
+    border-radius: 4vw; /* Ajusta este valor para redondear los bordes */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+  }
+  .image-name {
+    display: none; /* Ocultar el texto por defecto */
+  }
+
+  .image-box::after {
+    content: attr(data-text); /* Mostrar el texto especificado en el atributo data-text */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: none;
+  }
+  .image-box:hover::after {
+    display: block; /* Mostrar el texto al hacer hover sobre la imagen */
+  }

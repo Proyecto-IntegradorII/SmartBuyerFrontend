@@ -46,6 +46,7 @@ function Search() {
       </div>
       <header className="Search-header ">
         <img src="/images/logo.png" className="Search-logo" alt="logo" />
+
         <input
           value={search}
           type="text"
@@ -69,6 +70,7 @@ function Search() {
             <FaEdit className="icon" onClick={() => handleEdit(index, texto)} style={{ marginLeft: '1vw' }} />
             <FaTrash className="icon" onClick={() => handleDelete(index)} style={{ marginLeft: '1vw' }} />
           </div>
+
         ))}
         <button className="boton" type="submit" style={{ margin: '1vw', padding: 0 }} >Buscar</button>
 
