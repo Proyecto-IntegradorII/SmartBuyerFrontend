@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaEdit, FaTrash, FaMicrophone } from 'react-icons/fa';
-
+import { FaUser } from 'react-icons/fa';
+import AudioRecorder from "./audio";
 function Search() {
   const [search, setSearch] = useState("");
   const [edit, setEdit] = useState(false);
@@ -34,14 +35,20 @@ function Search() {
     <div className="text-center">
       <header className="flex flex-col items-center justify-center">
         <img src="/images/logo.png" className="mt-20 w-80" alt="logo" />
-        <div className="relative mt-8">
+        <FaUser 
+          className="absolute top-2 right-2 text-2xl cursor-pointer" 
+          style={{ marginTop: '3vw' }} 
+        />
+
+        <div className="relative mt-8"  style={{marginTop: '3vw', marginBottom: '20px'}}>
+
           <input
             value={search}
             type="text"
             className="form-contro w-96 h-32 border border-orange-600 bg-gray-300 text-xl text-center rounded-lg"
             onChange={handleInputChange}
           />
-          <FaMicrophone className="absolute right-2 top-1/2 transform -translate-y-1/2 text-2xl cursor-pointer" style={{ marginTop: '3vw' }}/>
+          <AudioRecorder    />
         </div>
         <p className="text-xl mt-4">Tu lista actualmente se ve así:</p>
         {lista.map((texto, index) => (
