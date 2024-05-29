@@ -36,6 +36,18 @@ function SearchL() {
         />
         <button className="boton mt-4 bg-orange-600 text-white text-xl rounded-lg w-32 h-10" type="submit">Buscar</button>
       </header>
+      <h2 className="text-xl sm:text-2xl font-normal mt-8">Tu lista será cotizada automáticamente en:</h2>
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-8">
+        <div className="image-box w-24 h-24 sm:w-40 sm:h-40 bg-center bg-cover rounded-3xl shadow-lg" style={{ backgroundImage: 'url(/images/images.png)' }}>
+          <div className="image-name hidden">Exito</div>
+        </div>
+        <div className="image-box w-24 h-24 sm:w-40 sm:h-40 bg-center bg-cover rounded-3xl shadow-lg" style={{ backgroundImage: 'url(/images/D1.jpg)' }}>
+          <div className="image-name hidden">D1</div>
+        </div>
+        <div className="image-box w-24 h-24 sm:w-40 sm:h-40 bg-center bg-cover rounded-3xl shadow-lg" style={{ backgroundImage: 'url(/images/jumbo.jpg)' }}>
+          <div className="image-name hidden">Jumbo</div>
+        </div>
+      </div>
     </div>
   );
 }
