@@ -26,4 +26,4 @@ jobs:
     - name: Run test
       env:
         NODE_ENV: test
-      run: npm run test
+      run: npm run tests
