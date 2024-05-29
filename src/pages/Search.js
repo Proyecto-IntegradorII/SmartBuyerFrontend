@@ -50,21 +50,22 @@ function Search() {
 
   const sendAudioToServer = async (audioBlob) => {
     try {
-      const formData = new FormData();
-      formData.append('audio', audioBlob, 'recording.webm');
+    const formData = new FormData();
+    formData.append('audio', audioBlob, 'recording.webm'); 
+  
+    const response = await fetch('https://smartbuyerbackend.onrender.com/transcribes', {
+    method: 'POST',
+    body: formData
+    });
+  
+    if (!response.ok) {
+    throw new Error('Error al enviar el audio al servidor');
+    }
+  
+    const data = await response.json();
+    console.log('Respuesta del servidor:', data);
+    setSearch(data.transcripcion);
 
-      const response = await fetch('http://localhost:9000/transcribes', {
-        method: 'POST',
-        body: formData
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al enviar el audio al servidor');
-      }
-
-      const data = await response.json();
-      console.log('Respuesta del servidor:', data);
-      setSearch(data.transcripcion);
     } catch (error) {
       console.error('Error al enviar el audio', error);
       setError('Error al enviar el audio al servidor');
