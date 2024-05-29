@@ -51,7 +51,7 @@ function Search() {
     const formData = new FormData();
     formData.append('audio', audioBlob, 'recording.webm'); 
   
-    const response = await fetch('http://localhost:9000/transcribes', {
+    const response = await fetch('https://smartbuyerbackend.onrender.com/transcribes', {
     method: 'POST',
     body: formData
     });
