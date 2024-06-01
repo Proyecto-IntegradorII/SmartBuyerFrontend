@@ -9,9 +9,6 @@
       ],
       [
         "@babel/preset-react"
-      ],
-      [
-        "next/babel"
       ]
     ]
   }
