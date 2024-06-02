@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FaEdit, FaTrash, FaMicrophone, FaUser } from 'react-icons/fa';
-
+import { getFormattedList } from '../chatGPT'
 function Search() {
   const [search, setSearch] = useState("");
   const [edit, setEdit] = useState(false);
@@ -13,7 +13,37 @@ function Search() {
   const [error, setError] = useState(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
+  const [response2, setResponse2] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+
+  const handleSubmitOpenIA = async (event) => {
+    event.preventDefault();
+    setLoading(true)
+    try {
+      const response = await fetch('http://localhost:9000/gpt_create_products_list', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          inputText: search
+        })
+      });
+  
+      if (response.ok) {
+        const formattedList = await response.json();
+        console.log(formattedList);
+        setLista(formattedList.lines);
+        setLoading(false)
+      } else {
+        console.error('Error en la petición:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al realizar la petición:', error);
+    }
+  };
+  
   const handleStartRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -76,24 +106,31 @@ function Search() {
   };
 
   const handleEdit = (index, texto) => {
-    setEditIndex(index);
-    setEditValue(editValue);
-    setEdit(!edit);
-    setEstadoEdit("Save")
-    if (edit) {
+    if (!edit) {
+      // Entrando al modo de edición
+      setEditIndex(index);
+      setEditValue(texto); // Establecer el valor actual del elemento en el estado de edición
+      setEdit(true);
+      setEstadoEdit("Save");
+    } else {
+      // Saliendo del modo de edición
       const nuevaLista = [...lista];
-      nuevaLista[index] = editValue;
+      nuevaLista[index] = editValue; // Guardar el valor editado en la lista
       setLista(nuevaLista);
+      setEditIndex(null);
+      setEditValue(""); // Limpiar el valor de edición
+      setEdit(false);
       setEstadoEdit("Edit");
     }
   };
+  
 
   const handleDelete = (index) => {
     const nuevaLista = [...lista];
     nuevaLista.splice(index, 1);
     setLista(nuevaLista);
   };
-
+  const halfScreenWidth = '50vw';
   return (
     <div className="flex flex-col items-center justify-center text-center p-4">
       <header className="flex flex-col items-center justify-center w-full max-w-lg">
@@ -110,7 +147,22 @@ function Search() {
             <FaMicrophone className="text-xl sm:text-2xl" />
           </div>
           {error && <p className="text-red-500 mt-2">{error}</p>}
+
         </div>
+        <button 
+  className="boton mt-4 bg-orange-700 text-white text-lg sm:text-xl rounded-lg w-24 sm:w-32 h-10" 
+  onClick={(event) => handleSubmitOpenIA(event)}   // Invocar la función dentro de una función anónima
+  type="submit"
+>
+  Analizar compras
+</button>
+{loading && (
+       <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'rgba(255, 255, 255, 0.8)',padding: `calc(${halfScreenWidth} / 6)`, borderRadius: '10px', boxShadow: '0 0 100px rgba(0, 0, 0, 0.2)', fontSize: '24px' }}>
+       <img src="/images/logo.png" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
+       <p style={{ margin: 0 }}>Evaluando tu lista de mercado...</p>
+     </div>
+     
+      )}
         <p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>
         {lista.map((texto, index) => (
           <div key={index} className="flex items-center mt-4 w-full">
