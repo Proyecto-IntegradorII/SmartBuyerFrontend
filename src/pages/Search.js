@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaUser } from "react-icons/fa";
 import { getFormattedList } from "../chatGPT";
+
 function Search() {
 	const [search, setSearch] = useState("");
 	const [edit, setEdit] = useState(false);
@@ -132,27 +133,32 @@ function Search() {
 	};
 	const halfScreenWidth = "50vw";
 	return (
-		<div className="flex flex-col items-center justify-center text-center p-4">
+		<div className="font-text flex flex-col items-center justify-center text-center p-4">
 			<header className="flex flex-col items-center justify-center w-full max-w-lg">
-				<img src="/images/logo.png" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
+				<img src="/images/logo.png" className="mt-10 w-60 md:w-80" alt="logo" />
+				{/* ICONO PERFIL */}
 				<FaUser className="absolute top-2 right-2 text-2xl cursor-pointer mt-4" />
+
+				{/* CUADRO DE BUSQUEDA */}
 				<div className="relative mt-8 w-full">
-					<input
+					<p className="text-xl">Escribe tu lista de compras</p>
+					<textarea
 						value={search}
-						type="text"
-						className="form-control w-full h-12 sm:h-16 border border-orange-600 bg-gray-300 text-lg sm:text-xl text-center rounded-lg"
+						className="form-control resize-none w-full h-56 mt-4 border border-[#e29500] bg-zinc-200 p-2 pr-6 text-lg rounded-lg"
 						onChange={handleInputChange}
+						placeholder="Azúcar blanca 2.5kg, Café Aguila Roja 500 gramos, Leche bolsa 6 unidades 1 ml Alpina..."
 					/>
 					<div
 						onClick={isRecording ? handleStopRecording : handleStartRecording}
-						className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+						className="absolute right-4  transform -translate-y-1/2 cursor-pointer"
 					>
-						<FaMicrophone className="text-xl sm:text-2xl" />
+						<FaMicrophone className="text-xl mb-12 sm:text-2xl" />
 					</div>
 					{error && <p className="text-red-500 mt-2">{error}</p>}
 				</div>
+
 				<button
-					className="boton mt-4 bg-orange-700 text-white text-lg sm:text-xl rounded-lg w-24 sm:w-32 h-10"
+					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					onClick={(event) => handleSubmitOpenIA(event)} // Invocar la función dentro de una función anónima
 					type="submit"
 				>
@@ -181,7 +187,7 @@ function Search() {
 					<div key={index} className="flex items-center mt-4 w-full">
 						<input
 							type="text"
-							className="form-list w-full h-10 border border-orange-600 bg-gray-300 text-lg sm:text-xl text-center rounded-lg"
+							className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
 							value={editIndex === index ? editValue : texto}
 							readOnly={editIndex !== index}
 							onChange={(e) => setEditValue(e.target.value)}
@@ -199,12 +205,14 @@ function Search() {
 					</div>
 				))}
 				<button
-					className="boton mt-4 bg-orange-600 text-white text-lg sm:text-xl rounded-lg w-24 sm:w-32 h-10"
+					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					type="submit"
 				>
 					Buscar
 				</button>
 			</header>
+
+			{/* FOOTER */}
 			<h2 className="text-xl sm:text-2xl font-normal mt-8">
 				Tu lista será cotizada automáticamente en:
 			</h2>
