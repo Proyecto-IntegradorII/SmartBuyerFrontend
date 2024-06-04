@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { FaEdit, FaTrash, FaMicrophone, FaUser } from "react-icons/fa";
+import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
 import { getFormattedList } from "../chatGPT";
 
 function Search() {
@@ -10,6 +10,7 @@ function Search() {
 	const [editValue, setEditValue] = useState("");
 	const [lista, setLista] = useState(["carne", "pollo"]);
 	const [isRecording, setIsRecording] = useState(false);
+	const [isProcessing, setIsProcessing] = useState(false);
 	const [audioUrl, setAudioUrl] = useState(null);
 	const [error, setError] = useState(null);
 	const mediaRecorderRef = useRef(null);
@@ -59,7 +60,9 @@ function Search() {
 				const audioUrl = URL.createObjectURL(audioBlob);
 				setAudioUrl(audioUrl);
 				audioChunksRef.current = [];
+				setIsProcessing(true);
 				await sendAudioToServer(audioBlob);
+				setIsProcessing(false);
 			};
 
 			mediaRecorder.start();
@@ -137,7 +140,7 @@ function Search() {
 			<header className="flex flex-col items-center justify-center w-full max-w-lg">
 				<img src="/images/logo.png" className="mt-10 w-60 md:w-80" alt="logo" />
 				{/* ICONO PERFIL */}
-				<FaUser className="absolute top-2 right-2 text-2xl cursor-pointer mt-4" />
+				<FaUser className="absolute top-2 right-2 text-2xl cursor-pointer mt-8 mr-8" />
 
 				{/* CUADRO DE BUSQUEDA */}
 				<div className="relative mt-8 w-full">
@@ -152,10 +155,55 @@ function Search() {
 						onClick={isRecording ? handleStopRecording : handleStartRecording}
 						className="absolute right-4  transform -translate-y-1/2 cursor-pointer"
 					>
-						<FaMicrophone className="text-xl mb-12 sm:text-2xl" />
+						{isRecording ? (
+							<FaStopCircle className="text-xl mb-12 sm:text-2xl text-red-500" />
+						) : (
+							<FaMicrophone className="text-xl mb-12 sm:text-2xl" />
+						)}
 					</div>
 					{error && <p className="text-red-500 mt-2">{error}</p>}
 				</div>
+
+				{isProcessing && (
+					<div
+						style={{
+							position: "fixed",
+							top: "50%",
+							left: "50%",
+							transform: "translate(-50%, -50%)",
+							backgroundColor: "rgba(255, 255, 255, 0.8)",
+							padding: `calc(${halfScreenWidth} / 6)`,
+							borderRadius: "10px",
+							boxShadow: "0 0 100px rgba(0, 0, 0, 0.2)",
+							fontSize: "24px",
+						}}
+					>
+						<div className="flex flex-col items-center">
+							<svg
+								className="animate-spin h-8 w-8 text-gray-600 mb-4"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+							>
+								<circle
+									className="opacity-25"
+									cx="12"
+									cy="12"
+									r="10"
+									stroke="currentColor"
+									strokeWidth="4"
+								></circle>
+								<path
+									className="opacity-75"
+									fill="currentColor"
+									d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+								></path>
+							</svg>
+							<p>Se está procesando la grabación...</p>
+						</div>
+					</div>
+				)}
+
 
 				<button
 					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
