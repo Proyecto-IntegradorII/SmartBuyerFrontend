@@ -114,7 +114,7 @@ const Register = () => {
 				{/* IMAGEN DE FONDO IZQUIERDA*/}
 				<div className="hidden md:block md:w-1/2 lg:w-7/12 justify-center items-center h-full w-full">
 					<img
-						src={require("../media/coliseo.jpg")}
+						src={require("../media/logos/logo.jpg")}
 						alt="Imagen de fondo"
 						className="block w-full h-full object-cover"
 					/>
@@ -128,14 +128,14 @@ const Register = () => {
 							<HomeButton />
 						</div>
 
-						{/* Logo */}
+						{/* Logo 
 						<div className="flex w-full justify-center items-center mb-4 ">
 							<img
-								src={require("../media/logos/logo.png")}
+								src={require("../media/logos/logo.jpg")}
 								alt="Imagen en el top right"
-								className="max-w-xs md:max-w-sm"
+								className="max-w-xs md:max-w-sm w-32"
 							/>
-						</div>
+						</div>*/}
 
 						{/* Formulario */}
 						<div className="flex flex-col items-center justify-center">
