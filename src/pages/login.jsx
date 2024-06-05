@@ -93,7 +93,7 @@ const Login = () => {
                 {/* IMAGEN DE FONDO IZQUIERDA */}
                 <div className="hidden md:block md:w-1/2 lg:w-7/12 justify-center items-center h-full w-full">
                     <img
-                        src={require("../media/plazaSanPedro.jpg")}
+                        src={require("../media/logos/logo.jpg")}
                         alt="Imagen de fondo"
                         className="block w-full h-full object-cover"
                     />
@@ -107,11 +107,11 @@ const Login = () => {
                             <HomeButton />
                         </div>
 
-                        {/* IMAGEN DEL LOGIN */}
+                        {/* IMAGEN DEL LOGIN 
                         <div className="flex justify-center mb-4">
                             <img src={require("../media/iconos/luperca.png")} alt="Imagen en el top right" />
                         </div>
-
+                        */}
                         {/* CAMPO DE EMAIL, PASSWORD, BOTON DE LOGIN */}
                         <div className="flex flex-col items-center justify-center">
                             <input
