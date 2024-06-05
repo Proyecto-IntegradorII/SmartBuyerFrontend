@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
-import { getFormattedList } from "../chatGPT";
-
+import { Link } from 'react-router-dom';
 function Search() {
 	const [search, setSearch] = useState("");
 	const [edit, setEdit] = useState(false);
@@ -22,7 +21,7 @@ function Search() {
 		event.preventDefault();
 		setLoading(true);
 		try {
-			const response = await fetch("http://localhost:9000/gpt_create_products_list", {
+			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_create_products_list", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -88,7 +87,7 @@ function Search() {
 			const formData = new FormData();
 			formData.append("audio", audioBlob, "recording.webm");
 
-			const response = await fetch("http://localhost:9000/transcribes", {
+			const response = await fetch("https://smart-buyer-bf8t.onrender.com/transcribes", {
 				method: "POST",
 				body: formData,
 			});
@@ -140,7 +139,9 @@ function Search() {
 			<header className="flex flex-col items-center justify-center w-full max-w-lg">
 				<img src="/images/logo.png" className="mt-10 w-60 md:w-80" alt="logo" />
 				{/* ICONO PERFIL */}
-				<FaUser className="absolute top-2 right-2 text-2xl cursor-pointer mt-8 mr-8" />
+				<Link to="/login">
+					<FaUser className="absolute top-2 right-2 text-2xl cursor-pointer mt-8 mr-8" />
+				</Link>
 
 				{/* CUADRO DE BUSQUEDA */}
 				<div className="relative mt-8 w-full">
@@ -206,7 +207,7 @@ function Search() {
 
 
 				<button
-					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
+					className=" mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					onClick={(event) => handleSubmitOpenIA(event)} // Invocar la función dentro de una función anónima
 					type="submit"
 				>
@@ -249,11 +250,12 @@ function Search() {
 							className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
 							onClick={() => handleDelete(index)}
 							aria-label="Delete"
+							data-testid="delete-icon"
 						/>
 					</div>
 				))}
 				<button
-					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
+					className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					type="submit"
 				>
 					Buscar
