@@ -4,5 +4,9 @@ module.exports = {
     },
     setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
     testEnvironment: 'jsdom',
+    transformIgnorePatterns: [
+      "/node_modules/",
+      "^.+\\.jpg$"
+    ],
   };
   

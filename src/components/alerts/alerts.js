@@ -1,4 +1,4 @@
-import 'tailwindcss/tailwind.css';
+import React from "react";
 
 export function Alert({ type, message }) {
     const alertClasses = {

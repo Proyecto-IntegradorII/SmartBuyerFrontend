@@ -5,7 +5,7 @@
 const API_URL = "https://smart-buyer-bf8t.onrender.com";
 //Usar la API_URL del puerto 9000 si se va a trabajar local
 //const API_URL = "http://localhost:9000";
-
+import React from "react";
 export function getAPI_URL() {
 	return API_URL;
 }
