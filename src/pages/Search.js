@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
-import { getFormattedList } from "../chatGPT";
 import { Link } from 'react-router-dom';
 function Search() {
 	const [search, setSearch] = useState("");
