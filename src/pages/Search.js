@@ -207,7 +207,7 @@ function Search() {
 
 
 				<button
-					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
+					className=" mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					onClick={(event) => handleSubmitOpenIA(event)} // Invocar la función dentro de una función anónima
 					type="submit"
 				>
@@ -250,11 +250,12 @@ function Search() {
 							className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
 							onClick={() => handleDelete(index)}
 							aria-label="Delete"
+							data-testid="delete-icon"
 						/>
 					</div>
 				))}
 				<button
-					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
+					className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					type="submit"
 				>
 					Buscar

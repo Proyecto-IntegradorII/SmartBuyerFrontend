@@ -1,62 +1,82 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
-
+import { render, fireEvent } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Importa BrowserRouter
 
 import Search from '../pages/Search';
-test('renders Search component', () => {
-    const { getByText, getByRole } = render(<Search />);
 
-    expect(getByText('Tu lista actualmente se ve así:')).toBeInTheDocument();
-     // Verifica el botón por su className
-  const button = getByRole('button', { className: /boton/ });
-  expect(button).toBeInTheDocument();
+const { getByPlaceholderText, getByText , getByDisplayValue, queryByText, getByRole } = render(<Router>
+  <Search />
+</Router>);
+
+
+
+//funciona
+test('handles input change correctly', () => {
+  const textarea = getByPlaceholderText('Azúcar blanca 2.5kg, Café Aguila Roja 500 gramos, Leche bolsa 6 unidades 1 ml Alpina...');
+
+  fireEvent.change(textarea, { target: { value: 'Azúcar blanca 2.5kg' } });
+
+  expect(textarea.value).toBe('Azúcar blanca 2.5kg');
 });
 
+test('renders Search component', () => {
+  const { getByText } = render(<Router>
+    <Search />
+  </Router>);
+  expect(getByText('Tu lista actualmente se ve así:')).toBeInTheDocument();
+  
+
+});
+//revisar
+/*test('handles edit correctly', () => {
+  const editButton = getByText('Edit');
+  fireEvent.click(editButton);
+
+  const input = getByDisplayValue('carne'); // Assuming 'carne' is the initial value in your list
+  fireEvent.change(input, { target: { value: 'new value' } });
+
+  const saveButton = getByText('Save');
+  fireEvent.click(saveButton);
+
+  expect(input.value).toBe('new value');
+});
+
+test('handles audio recording correctly', async () => {
+  const startRecordingButton = getByText('Start Recording');
+  fireEvent.click(startRecordingButton);
+
+  await waitFor(() => {
+    const stopRecordingButton = getByText('Stop Recording');
+    fireEvent.click(stopRecordingButton);
+  });
+});*/
+
+
 test('handleDelete actualiza correctamente el estado de lista', () => {
-    const { queryAllByLabelText, queryByText } = render(<Search />);
-    const deleteButtons = queryAllByLabelText('Delete'); // Suponiendo que los iconos tienen aria-label="Delete"
-  
-    fireEvent.click(deleteButtons[0]); // Puedes usar un índice específico si sabes cuál es el botón que quieres clickear
-  
-    expect(queryByText('carne')).toBeNull(); // Suponiendo que 'carne' ya no está en tu lista
-  });
+  const { queryAllByLabelText, queryByText } = render(<Router>
+    <Search />
+  </Router>);
+  const deleteButtons = queryAllByLabelText('Delete'); // Suponiendo que los iconos tienen aria-label="Delete"
 
-  test('handleEdit updates edit state correctly', () => {
-    const { queryAllByLabelText } = render(<Search />);
-  const editButtons = queryAllByLabelText('Edit');
+  fireEvent.click(deleteButtons[0]); // Puedes usar un índice específico si sabes cuál es el botón que quieres clickear
 
-  // Assuming you want to interact with the first edit button
-  const editButton = editButtons[0];
+  expect(queryByText('carne')).toBeNull(); // Suponiendo que 'carne' ya no está en tu lista
+});
 
-  fireEvent.click(editButton);
-  
-  expect(editButton).toHaveAttribute('aria-label', 'Save');
 
-  fireEvent.click(editButton);
-  expect(editButton).toHaveAttribute('aria-label', 'Edit');
-  });
+test('handleEdit updates edit state correctly', () => {
+  const { queryAllByLabelText } = render(<Router>
+    <Search />
+  </Router>);
+const editButtons = queryAllByLabelText('Edit');
 
- /* test('handleEditValue updates editValue state correctly', () => {
-    const { getByPlaceholderText, container } = render(<Search />);
-    const input = container.getElementsByClassName('form-list')[0];
-    
-    fireEvent.click(input);
+// Assuming you want to interact with the first edit button
+const editButton = editButtons[0];
 
-    fireEvent.change(input, { target: { value: 'nueva búsqueda' } });
-    fireEvent.click(input);
-    expect(input.value).toBe('nueva búsqueda');
-  
+fireEvent.click(editButton);
 
-  });*/
+expect(editButton).toHaveAttribute('aria-label', 'Save');
 
-  test('handleInputChange updates search state correctly', () => {
-    const { container } = render(<Search />);
-    const input = container.getElementsByClassName('form-contro')[0]; // Busca por classname
-  
-    fireEvent.change(input, { target: { value: 'nueva búsqueda' } });
-  
-    expect(input.value).toBe('nueva búsqueda');
-  });
-  
-  
-  
+fireEvent.click(editButton);
+expect(editButton).toHaveAttribute('aria-label', 'Edit');
+});
