@@ -13,7 +13,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				text: ["Titillium Web"],
+				text: ["Dosis"],
 			},
 		},
 	},
