@@ -69,19 +69,8 @@ export const postLogin = async (mydata) => {
 
 			//Guardar datos del usuario en localStorage
 			localStorage.setItem("email", JSON.stringify(usuarioData.email));
-			localStorage.setItem("avatar_id", JSON.stringify(usuarioData.avatar_id));
-			localStorage.setItem("nickname", JSON.stringify(usuarioData.nickname));
-			localStorage.setItem("email", JSON.stringify(usuarioData.email));
-			localStorage.setItem("id_usuario", JSON.stringify(usuarioData.id_usuario));
-			localStorage.setItem("nombre_usuario", JSON.stringify(usuarioData.nombre_usuario));
-			localStorage.setItem("logro_monarquia", JSON.stringify(usuarioData.logro_monarquia));
-			localStorage.setItem("logro_republica", JSON.stringify(usuarioData.logro_republica));
-			localStorage.setItem("logro_imperio", JSON.stringify(usuarioData.logro_imperio));
-			localStorage.setItem("logro_personajes", JSON.stringify(usuarioData.logro_personajes));
-			localStorage.setItem("logro_arquitectura", JSON.stringify(usuarioData.logro_arquitectura));
-			localStorage.setItem("logro_cultura", JSON.stringify(usuarioData.logro_cultura));
-			localStorage.setItem("nivel", JSON.stringify(usuarioData.nivel));
-			localStorage.setItem("experiencia", JSON.stringify(usuarioData.experiencia));
+			localStorage.setItem("user_id", JSON.stringify(usuarioData.user_id));
+			localStorage.setItem("nombre_usuario", JSON.stringify(usuarioData.username));
 
 			return "Inicio de sesión exitoso";
 		} else {
@@ -126,7 +115,7 @@ export const postLoginGoogle = async (mydata) => {
 
 			//Guardar datos del usuario en localStorage
 			localStorage.setItem("email", JSON.stringify(usuarioData.email));
-			localStorage.setItem("id_usuario", JSON.stringify(usuarioData.id_usuario));
+			localStorage.setItem("user_id", JSON.stringify(usuarioData.user_id));
 			localStorage.setItem("nombre_usuario", JSON.stringify(usuarioData.username));
 
 
