@@ -275,9 +275,9 @@ function Search() {
 				</div>
 				<div
 					className="image-box w-24 h-24 sm:w-40 sm:h-40 bg-center bg-cover rounded-3xl shadow-lg"
-					style={{ backgroundImage: "url(/images/D1.jpg)" }}
+					style={{ backgroundImage: "url(/images/Olimpical.png)" }}
 				>
-					<div className="image-name hidden">D1</div>
+					<div className="image-name hidden">Olompica</div>
 				</div>
 				<div
 					className="image-box w-24 h-24 sm:w-40 sm:h-40 bg-center bg-cover rounded-3xl shadow-lg"

@@ -1,0 +1,22 @@
+[
+    {
+        "jumbo": {
+            "products": [
+                {"name": "Jabon Antibacterial", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/1415055-300-300?v=638506965737870000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jab-protex-avena-110g-x6-sup-of/p", "price": "21950"},
+                {"name": "Jabon Antibacterial Protex Limpieza Profunda 110g x3und", "imagen": "url", "link": "https://www.olimpica.com/jab-protex-limpieza-prof-110g-x3/p", "price": "11500"}
+            ]
+        },
+        "exito": {
+            "products": [
+                {"name": "JABON REY 300 g", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/1352027-300-300?v=638467208478500000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jabon-rey-300-g/p", "price": "2600"},
+                {"name": "Jabon Antibacterial Protex Avena 110g x3und", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/1415064-300-300?v=638506965852400000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jab-protex-avena-110g-x3/p", "price": "12900"}
+            ]
+        },
+        "olimpica": {
+            "products": [
+                {"name": "JABON COCO ORIGINAL 180g", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/934075-300-300?v=638031799206400000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jabon-coco-original-180g/p", "price": "3100"},
+                {"name": "Jabón Rey 300 G X3 Unds Oferta Especial", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/1352028-300-300?v=638467209171800000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jabon-rey-3x300-g-p-esp-of-7702166006058--58417/p", "price": "6690"}
+            ]
+        }
+    }
+]
