@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 function Search() {
 	const [search, setSearch] = useState("");
 	const [edit, setEdit] = useState(false);
@@ -16,9 +18,19 @@ function Search() {
 	const audioChunksRef = useRef([]);
 	const [response2, setResponse2] = useState([]);
 	const [loading, setLoading] = useState(false);
-
+	
 	const handleSubmitOpenIA = async (event) => {
 		event.preventDefault();
+	
+		if (!search.trim()) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Campo vacío',
+				text: 'Debe ingresar su mercado',
+			});
+			return;
+		}
+	
 		setLoading(true);
 		try {
 			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_create_products_list", {
@@ -30,20 +42,40 @@ function Search() {
 					inputText: search,
 				}),
 			});
-
+	
 			if (response.ok) {
 				const formattedList = await response.json();
-				console.log(formattedList);
-				setLista(formattedList.lines);
+				if (formattedList.lines && formattedList.lines.length > 0) {
+					console.log(formattedList);
+					setLista(formattedList.lines);
+				} else {
+					Swal.fire({
+						icon: 'error',
+						title: 'Sin resultados',
+						text: 'No se encontraron productos. Asegúrese de haber ingresado un producto válido. Por ejemplo: "Azúcar blanca 2.5kg, Café Aguila Roja 500 gramos, Leche bolsa 6 unidades 1 ml Alpina...".',
+					});
+				}
 				setLoading(false);
 			} else {
 				console.error("Error en la petición:", response.statusText);
+				Swal.fire({
+					icon: 'error',
+					title: 'Error en la petición',
+					text: `Hubo un problema con la solicitud: ${response.statusText}`,
+				});
+				setLoading(false);
 			}
 		} catch (error) {
 			console.error("Error al realizar la petición:", error);
+			Swal.fire({
+				icon: 'error',
+				title: 'Error al realizar la petición',
+				text: 'Hubo un problema al realizar la solicitud. Por favor, inténtelo de nuevo.',
+			});
+			setLoading(false);
 		}
 	};
-
+	
 	const handleStartRecording = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });

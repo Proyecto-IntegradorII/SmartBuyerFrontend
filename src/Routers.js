@@ -10,7 +10,7 @@ export const AppRouter = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Search />} />
+				<Route path="/" element={localStorage.getItem("token") ? <SearchL /> : <Search />} />
 				<Route path="/login/search" element={<SearchL />} />
 				<Route path="/gpt" element={<SendText />} />
 				<Route path="/login" element={<Login />} />
