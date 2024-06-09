@@ -83,7 +83,7 @@ function Search() {
 		let stringResultado = lista.join(', ');
 		console.log('esta es la lista ', stringResultado)
 		try {
-			const response = await fetch("http://localhost:9000/gpt_confirm_products_list", {
+			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_confirm_products_list", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -113,7 +113,7 @@ function Search() {
 		const data = JSON.parse(datos);
 		console.log('despues de parse ', data)
 		
-		fetch("http://localhost:9000/scraping", {
+		fetch("https://smart-buyer-bf8t.onrender.com/scraping", {
 			method: "POST",
 			headers: {
 			  "Content-Type": "application/json"
