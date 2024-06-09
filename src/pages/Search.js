@@ -9,13 +9,13 @@ function Search() {
 	const [editIndex, setEditIndex] = useState(null);
 	const [editValue, setEditValue] = useState("");
 	const [lista, setLista] = useState(["carne", "pollo"]);
+	const [listaScrapping, setlistaScrapping] = useState([]);
 	const [isRecording, setIsRecording] = useState(false);
 	const [isProcessing, setIsProcessing] = useState(false);
 	const [audioUrl, setAudioUrl] = useState(null);
 	const [error, setError] = useState(null);
 	const mediaRecorderRef = useRef(null);
 	const audioChunksRef = useRef([]);
-	const [response2, setResponse2] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	const handleSubmitOpenIA = async (event) => {
@@ -36,6 +36,35 @@ function Search() {
 				const formattedList = await response.json();
 				console.log(formattedList);
 				setLista(formattedList.lines);
+				setLoading(false);
+			} else {
+				console.error("Error en la petición:", response.statusText);
+			}
+		} catch (error) {
+			console.error("Error al realizar la petición:", error);
+		}
+	};
+
+	const handleSubmitOpenGpt = async (event) => {
+		event.preventDefault();
+		setLoading(true);
+		// Convertir el array en un string separado por comas
+		let stringResultado = lista.join(', ');
+		console.log('esta es la lista ', stringResultado)
+		try {
+			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_create_products_list", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					inputText: stringResultado,
+				}),
+			});
+
+			if (response.ok) {
+				const formattedList = await response.json();
+				console.log(formattedList);
 				setLoading(false);
 			} else {
 				console.error("Error en la petición:", response.statusText);
@@ -257,6 +286,7 @@ function Search() {
 				<button
 					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					type="submit"
+					onClick={(event) => handleSubmitOpenGpt(event)}
 				>
 					Buscar
 				</button>
