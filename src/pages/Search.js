@@ -87,7 +87,7 @@ function Search() {
 			};
 
 			mediaRecorder.onstop = async () => {
-				const audioBlob = new Blob(audioChunksRef.current, { type: "audio/flac" });
+				const audioBlob = new Blob(audioChunksRef.current, { type: "audio/ogg" });
 				const audioUrl = URL.createObjectURL(audioBlob);
 				setAudioUrl(audioUrl);
 				audioChunksRef.current = [];
@@ -117,7 +117,7 @@ function Search() {
 	const sendAudioToServer = async (audioBlob) => {
 		try {
 			const formData = new FormData();
-			formData.append("audio", audioBlob, "recording.flac");
+			formData.append("audio", audioBlob, "recording.ogg");
 
 			const response = await fetch("https://smart-buyer-bf8t.onrender.com/transcribes", {
 				method: "POST",
