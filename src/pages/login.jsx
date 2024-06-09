@@ -41,7 +41,7 @@ const Login = () => {
                     },
                 });
 
-                navigate("/");
+                navigate("/login/search");
             } else {
                 // Si las credenciales son incorrectas, mostrar una alerta de error con el mensaje de error devuelto por la solicitud
                 Swal.fire({
@@ -78,7 +78,7 @@ const Login = () => {
                     },
                 });
 
-                navigate("/");
+                navigate("/login/search");
             }
         };
         myresponse(); // Ejecutar la función asíncrona myresponse
