@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
-import { getFormattedList } from "../chatGPT";
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 function Search() {
 	const [search, setSearch] = useState("");
 	const [edit, setEdit] = useState(false);
@@ -17,9 +18,19 @@ function Search() {
 	const mediaRecorderRef = useRef(null);
 	const audioChunksRef = useRef([]);
 	const [loading, setLoading] = useState(false);
-
+	
 	const handleSubmitOpenIA = async (event) => {
 		event.preventDefault();
+	
+		if (!search.trim()) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Campo vacío',
+				text: 'Debe ingresar su mercado',
+			});
+			return;
+		}
+	
 		setLoading(true);
 		try {
 			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_create_products_list", {
@@ -31,46 +42,37 @@ function Search() {
 					inputText: search,
 				}),
 			});
-
+	
 			if (response.ok) {
 				const formattedList = await response.json();
-				console.log(formattedList);
-				setLista(formattedList.lines);
+				if (formattedList.lines && formattedList.lines.length > 0) {
+					console.log(formattedList);
+					setLista(formattedList.lines);
+				} else {
+					Swal.fire({
+						icon: 'error',
+						title: 'Sin resultados',
+						text: 'No se encontraron productos. Asegúrese de haber ingresado un producto válido. Por ejemplo: "Azúcar blanca 2.5kg, Café Aguila Roja 500 gramos, Leche bolsa 6 unidades 1 ml Alpina...".',
+					});
+				}
 				setLoading(false);
 			} else {
 				console.error("Error en la petición:", response.statusText);
+				Swal.fire({
+					icon: 'error',
+					title: 'Error en la petición',
+					text: `Hubo un problema con la solicitud: ${response.statusText}`,
+				});
+				setLoading(false);
 			}
 		} catch (error) {
 			console.error("Error al realizar la petición:", error);
-		}
-	};
-
-	const handleSubmitOpenGpt = async (event) => {
-		event.preventDefault();
-		setLoading(true);
-		// Convertir el array en un string separado por comas
-		let stringResultado = lista.join(', ');
-		console.log('esta es la lista ', stringResultado)
-		try {
-			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_create_products_list", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					inputText: stringResultado,
-				}),
+			Swal.fire({
+				icon: 'error',
+				title: 'Error al realizar la petición',
+				text: 'Hubo un problema al realizar la solicitud. Por favor, inténtelo de nuevo.',
 			});
-
-			if (response.ok) {
-				const formattedList = await response.json();
-				console.log(formattedList);
-				setLoading(false);
-			} else {
-				console.error("Error en la petición:", response.statusText);
-			}
-		} catch (error) {
-			console.error("Error al realizar la petición:", error);
+			setLoading(false);
 		}
 	};
 
@@ -237,7 +239,7 @@ function Search() {
 
 
 				<button
-					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
+					className=" mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					onClick={(event) => handleSubmitOpenIA(event)} // Invocar la función dentro de una función anónima
 					type="submit"
 				>
@@ -280,13 +282,14 @@ function Search() {
 							className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
 							onClick={() => handleDelete(index)}
 							aria-label="Delete"
+							data-testid="delete-icon"
 						/>
 					</div>
 				))}
 				<button
-					className="mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
+					className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					type="submit"
-					onClick={(event) => handleSubmitOpenGpt(event)}
+					
 				>
 					Buscar
 				</button>
