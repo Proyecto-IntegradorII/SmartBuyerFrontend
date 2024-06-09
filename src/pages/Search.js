@@ -76,6 +76,60 @@ function Search() {
 		}
 	};
 
+	const handleSubmitOpenGpt = async (event) => {
+		event.preventDefault();
+		setLoading(true);
+		// Convertir el array en un string separado por comas
+		let stringResultado = lista.join(', ');
+		console.log('esta es la lista ', stringResultado)
+		try {
+			const response = await fetch("http://localhost:9000/gpt_confirm_products_list", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					inputText: stringResultado,
+				}),
+			});
+
+			if (response.ok) {
+				const formattedList = await response.json();
+				console.log('esta es la 98 ', formattedList)
+				webScrapping(formattedList.formattedData)
+				setLoading(false);
+			} else {
+				console.error("Error en la petición:", response.statusText);
+			}
+		} catch (error) {
+			console.error("Error al realizar la petición:", error);
+		}
+	};
+
+	const webScrapping = async (datos) => {
+		
+		console.log('estos son los datos ', datos)
+		
+		const data = JSON.parse(datos);
+		console.log('despues de parse ', data)
+		
+		fetch("http://localhost:9000/scraping", {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		  })
+		  .then(response => response.json())
+		  .then(data => {
+			console.log("Respuesta del servidor:", data);
+		  })
+		  .catch(error => {
+			console.error("Error al hacer la solicitud:", error);
+		  });
+
+	}
+
 	const handleStartRecording = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -289,7 +343,7 @@ function Search() {
 				<button
 					className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					type="submit"
-					
+					onClick={(event) => handleSubmitOpenGpt(event)}
 				>
 					Buscar
 				</button>
