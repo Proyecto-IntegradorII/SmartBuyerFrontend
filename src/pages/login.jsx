@@ -41,7 +41,7 @@ const Login = () => {
                     },
                 });
 
-                navigate("/");
+                navigate("/login/search");
             } else {
                 // Si las credenciales son incorrectas, mostrar una alerta de error con el mensaje de error devuelto por la solicitud
                 Swal.fire({
@@ -78,7 +78,7 @@ const Login = () => {
                     },
                 });
 
-                navigate("/");
+                navigate("/login/search");
             }
         };
         myresponse(); // Ejecutar la función asíncrona myresponse
@@ -145,7 +145,7 @@ const Login = () => {
 
                             {/* LOGIN CON GOOGLE */}
                             <div className="mb-8">
-                                <GoogleOAuthProvider clientId="880689041530-1g2pd7csm5mbrrqaha8rh60s6bvntlsv.apps.googleusercontent.com">
+                                <GoogleOAuthProvider clientId="1009519224600-3h16f1u41d28n6d8ssutnc7o8daorafn.apps.googleusercontent.com">
                                     <GoogleLogin
                                         onSuccess={(credentialResponse) => {
                                             handleGoogleLogin(credentialResponse); // Pasar credentialResponse como argumento

@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
+import { postQuery, getQueries, getQuery } from "../conections/requests";
 function Search() {
 	const [search, setSearch] = useState("");
 	const [edit, setEdit] = useState(false);
@@ -18,9 +19,52 @@ function Search() {
 	const [response2, setResponse2] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [selectedValue, setSelectedValue] = useState("");
+	const [titles, setTitles] = useState([]);
+
+	// Función para hacer la solicitud a la API
+	const fetchUserQueries = async () => {
+		try {
+			const user_id_saved_in_local_storage = localStorage.getItem("user_id")
+			const data = await getQueries(user_id_saved_in_local_storage);
+
+			// Extraer los títulos de la respuesta
+			const titles = data.map(query => query.title);
+
+			// Actualizar el estado con los títulos
+			setTitles(titles);
+
+
+		} catch (error) {
+			console.error('Error fetching user queries:', error);
+			Swal.fire(`No se pudo obtener tus búsquedas`);
+		}
+	};
+
+	useEffect(() => {
+		// Llamar a la función de solicitud
+		fetchUserQueries();
+	}, []);
 
 	const handleChange = (event) => {
 		setSelectedValue(event.target.value);
+
+		// Función para hacer la solicitud a la API
+		const fetchUserQuery = async () => {
+			try {
+				const user_id_saved_in_local_storage = localStorage.getItem("user_id")
+				const data = await getQuery(user_id_saved_in_local_storage, event.target.value);
+
+				setSearch(data.text)
+				setLista(Object.values(data.object))
+
+			} catch (error) {
+				console.error('Error fetching user query:', error);
+				Swal.fire(`No se pudo obtener tu búsqueda`);
+			}
+		};
+
+		// Llamar a la función de solicitud
+		fetchUserQuery();
 	};
 
 	const handleSubmitOpenIA = async (event) => {
@@ -148,7 +192,7 @@ function Search() {
 			showCancelButton: true,
 			confirmButtonText: "Guardar",
 			denyButtonText: `No Guardar`
-		  }).then(async (result) => {
+		}).then(async (result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
 				const inputValue = "";
@@ -164,20 +208,38 @@ function Search() {
 						}
 					}
 				});
+				const myObject = {}
+				lista.forEach((item, index) => {
+					myObject[index] = item
+				})
 				if (title) {
-					if (true){
-						Swal.fire(`Se ha guardado tu búsqueda${title}`);
-						//proceder a hacer la animacion de busqueda
-					} else {
-						Swal.fire(`No se pudo guardar tu búsqueda${title}`);
+					const myResponse = async () => {
+						// Realizar solicitud de inicio de sesión utilizando los datos del formulario
+						const req_succesful = await postQuery({
+							user_id: localStorage.getItem("user_id"),
+							title: title,
+							text: search,
+							object: myObject,
+						});
+						if (req_succesful == "Query guardada con exito") {
+							Swal.fire(`Se ha guardado tu búsqueda: ${title}`).then(() => {
+								setTimeout(() => {
+									//window.location.reload();
+									//proceder a hacer la animacion de busqueda
+								}, 100);
+							});
+						} else {
+							Swal.fire(`No se pudo guardar tu búsqueda: ${title}`);
+						}
 					}
-					
+					const a = await myResponse()
+					console.log(a)
 				}
-			} else if (result.isDenied) {
-			  Swal.fire("Colocar aqui la animacion de busqueda en vez de este anuncio", "", "info");
+			} else if (result.isDenied) {//si no se quiere guardar la busqueda
+				Swal.fire("Colocar aqui la animacion de busqueda en vez de este anuncio", "", "info");
 			}
-		  });
-		
+		});
+
 	}
 
 	const halfScreenWidth = "50vw";
@@ -188,13 +250,14 @@ function Search() {
 				<select
 					value={selectedValue}
 					onChange={handleChange}
+					onClick={(e) => fetchUserQueries()}
 					className="list-control rounded-pill mt-4 w-full p-2"
 					data-testid="select"
 				>
 					<option value="">Seleccionar búsqueda guardada</option>
-					<option value="opcion1">Opción 1</option>
-					<option value="opcion2">Opción 2</option>
-					<option value="opcion3">Opción 3</option>
+					{titles.map((title, index) => (
+						<option key={index} value={title}>{title}</option>
+					))}
 				</select>
 				{/* ICONO PERFIL */}
 				<Link to="/login">

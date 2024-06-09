@@ -131,3 +131,48 @@ export const postLoginGoogle = async (mydata) => {
 		return "Error de conexión";
 	}
 };
+
+//POST para insertar una nueva query en la base de datos
+export const postQuery = async (myQuery) => {
+	try {
+		const response = await fetch(`${API_URL}/save-query`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				// Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(myQuery)
+		})
+		if (response.ok){
+			return "Query guardada con exito"
+		}
+	} catch {
+		return "Error al guardar la query"
+	}
+}
+
+//GET
+export const getQueries = async (user_id) => {
+	try {
+		const response = await fetch(`${API_URL}/get-all-queries-of-user/${user_id}`)
+		if (response.ok){
+			const server_response =  await response.json();
+			return server_response;
+		}
+	} catch {
+		return "Error al obtener la query"
+	}
+}
+
+//GET
+export const getQuery = async (user_id,title) => {
+	try {
+		const response = await fetch(`${API_URL}/get-query/${user_id}/${title}`)
+		if (response.ok){
+			const server_response =  await response.json();
+			return server_response;
+		}
+	} catch {
+		return "Error al obtener la query"
+	}
+}
