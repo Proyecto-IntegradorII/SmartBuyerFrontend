@@ -10,13 +10,13 @@ function Search() {
 	const [editIndex, setEditIndex] = useState(null);
 	const [editValue, setEditValue] = useState("");
 	const [lista, setLista] = useState(["carne", "pollo"]);
+	const [listaScrapping, setlistaScrapping] = useState([]);
 	const [isRecording, setIsRecording] = useState(false);
 	const [isProcessing, setIsProcessing] = useState(false);
 	const [audioUrl, setAudioUrl] = useState(null);
 	const [error, setError] = useState(null);
 	const mediaRecorderRef = useRef(null);
 	const audioChunksRef = useRef([]);
-	const [response2, setResponse2] = useState([]);
 	const [loading, setLoading] = useState(false);
 	
 	const handleSubmitOpenIA = async (event) => {
@@ -75,11 +75,71 @@ function Search() {
 			setLoading(false);
 		}
 	};
-	
+
+	const handleSubmitOpenGpt = async (event) => {
+		event.preventDefault();
+		setLoading(true);
+		// Convertir el array en un string separado por comas
+		let stringResultado = lista.join(', ');
+		console.log('esta es la lista ', stringResultado)
+		try {
+			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_confirm_products_list", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					inputText: stringResultado,
+				}),
+			});
+
+			if (response.ok) {
+				const formattedList = await response.json();
+				console.log('esta es la 98 ', formattedList)
+				webScrapping(formattedList.formattedData)
+				setLoading(false);
+			} else {
+				console.error("Error en la petición:", response.statusText);
+			}
+		} catch (error) {
+			console.error("Error al realizar la petición:", error);
+		}
+	};
+
+	const webScrapping = async (datos) => {
+		
+		console.log('estos son los datos ', datos)
+
+		const data = JSON.parse(datos);
+		console.log('despues de parse ', data)
+		
+		fetch("https://smart-buyer-bf8t.onrender.com/scraping", {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		  })
+		  .then(response => response.json())
+		  .then(data => {
+			//console.log('125',data.response[0].results);
+			console.log("Respuesta del servidor:", data);
+			setlistaScrapping(data.response[0].results);
+			console.log(listaScrapping)
+		  })
+		  .catch(error => {
+			console.error("Error al hacer la solicitud:", error);
+		  });
+
+		  console.log(listaScrapping)
+
+	}
+
 	const handleStartRecording = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 			const mediaRecorder = new MediaRecorder(stream);
+			
 			mediaRecorderRef.current = mediaRecorder;
 
 			mediaRecorder.ondataavailable = (event) => {
@@ -289,6 +349,7 @@ function Search() {
 				<button
 					className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					type="submit"
+					onClick={(event) => handleSubmitOpenGpt(event)}
 				>
 					Buscar
 				</button>
