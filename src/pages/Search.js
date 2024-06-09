@@ -109,7 +109,7 @@ function Search() {
 	const webScrapping = async (datos) => {
 		
 		console.log('estos son los datos ', datos)
-		
+
 		const data = JSON.parse(datos);
 		console.log('despues de parse ', data)
 		
@@ -122,11 +122,16 @@ function Search() {
 		  })
 		  .then(response => response.json())
 		  .then(data => {
+			//console.log('125',data.response[0].results);
 			console.log("Respuesta del servidor:", data);
+			setlistaScrapping(data.response[0].results);
+			console.log(listaScrapping)
 		  })
 		  .catch(error => {
 			console.error("Error al hacer la solicitud:", error);
 		  });
+
+		  console.log(listaScrapping)
 
 	}
 
@@ -134,6 +139,7 @@ function Search() {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 			const mediaRecorder = new MediaRecorder(stream);
+			
 			mediaRecorderRef.current = mediaRecorder;
 
 			mediaRecorder.ondataavailable = (event) => {
