@@ -26,7 +26,10 @@ function Search() {
 		try {
 			const user_id_saved_in_local_storage = localStorage.getItem("user_id")
 			const data = await getQueries(user_id_saved_in_local_storage);
-
+			setEdit(false)
+			setEstadoEdit(null)
+			setEditIndex(null)
+			setEditValue("")
 			// Extraer los títulos de la respuesta
 			const titles = data.map(query => query.title);
 
