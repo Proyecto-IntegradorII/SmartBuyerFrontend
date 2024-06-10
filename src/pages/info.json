@@ -1,22 +1,297 @@
-[
-    {
-        "jumbo": {
-            "products": [
-                {"name": "Jabon Antibacterial", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/1415055-300-300?v=638506965737870000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jab-protex-avena-110g-x6-sup-of/p", "price": "21950"},
-                {"name": "Jabon Antibacterial Protex Limpieza Profunda 110g x3und", "imagen": "url", "link": "https://www.olimpica.com/jab-protex-limpieza-prof-110g-x3/p", "price": "11500"}
-            ]
-        },
-        "exito": {
-            "products": [
-                {"name": "JABON REY 300 g", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/1352027-300-300?v=638467208478500000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jabon-rey-300-g/p", "price": "2600"},
-                {"name": "Jabon Antibacterial Protex Avena 110g x3und", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/1415064-300-300?v=638506965852400000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jab-protex-avena-110g-x3/p", "price": "12900"}
-            ]
-        },
-        "olimpica": {
-            "products": [
-                {"name": "JABON COCO ORIGINAL 180g", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/934075-300-300?v=638031799206400000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jabon-coco-original-180g/p", "price": "3100"},
-                {"name": "Jabón Rey 300 G X3 Unds Oferta Especial", "imagen": "https://olimpica.vtexassets.com/arquivos/ids/1352028-300-300?v=638467209171800000&width=300&height=300&aspect=true", "link": "https://www.olimpica.com/jabon-rey-3x300-g-p-esp-of-7702166006058--58417/p", "price": "6690"}
-            ]
-        }
-    }
-]
+{
+	"response": [
+		{
+			"productName": "Azúcar blanca",
+			"results": [
+				{
+					"products": [
+						{
+							"name": "Azúcar Blanco Especial EXITO MARCA PROPIA 2500 gr",
+							"imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/15838476/Azucar-Blanco-Especial-EXITO-MARCA-PROPIA-2500-gr-3310410_a.jpg?v=638054937252030000",
+							"productLink": "https://www.exito.com/azucar-blanco-especial-exito-marca-propia-2500-gr-3096350/p",
+							"priceDiscounted": 11380,
+							"priceWithoutDiscount": 11960,
+							"discountPercentage": "No discount",
+							"pum": "Gr a $ 4",
+							"id": "bc604435-82a5-44b2-af38-adc97719aebe",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "EXITO MARCA PROPIA"
+						},
+						{
+							"name": "Azúcar Riopaila blanca x2500g",
+							"link": "https://www.tiendasjumbo.co/azucar-blanco-riopaila-x-2500g/p",
+							"imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/185659-300-300?v=637813979734070000&width=300&height=300&aspect=true",
+							"priceWithoutDiscount": null,
+							"priceDiscounted": 10690,
+							"discountPercentage": "0",
+							"brandName": "RIOPAILA",
+							"id": "104cf3a6-82c5-45f6-aad2-5107c7e9c0c6",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "Riopaila"
+						},
+						{
+							"name": "Azúcar Riopaila Blanca 2.5 Kg",
+							"brandName": "Riopaila",
+							"totalMeasurementUnit": "2500 Gramos",
+							"priceMeasurement": "(Gramo a $ 4,76)",
+							"imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/615210-300-300?v=637626520589030000&width=300&height=300&aspect=true",
+							"productLink": "https://www.olimpica.com/azucar-riopaila-blanca--2-5-kg-7702127110022-66911/p",
+							"priceDiscounted": 11900,
+							"priceWithoutDiscount": null,
+							"discount": null,
+							"id": "752c82c4-9b65-40ac-8ec5-f3c378206d24",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "Riopaila"
+						}
+					]
+				},
+				{
+					"products": [
+						{
+							"name": "Azúcar Blanco Xispas 1",
+							"imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/15838476/Azucar-Blanco-Especial-EXITO-MARCA-PROPIA-2500-gr-3310410_a.jpg?v=638054937252030000",
+							"productLink": "https://www.exito.com/azucar-blanco-especial-exito-marca-propia-2500-gr-3096350/p",
+							"priceDiscounted": 12000,
+							"priceWithoutDiscount": 11960,
+							"discountPercentage": "No discount",
+							"pum": "Gr a $ 4",
+							"id": "bc604435-82a5-44b2-af38-adc97719aebe",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "EXITO MARCA PROPIA"
+						},
+						{
+							"name": "Azúcar Incauca blanca especial x2.5kg",
+							"link": "https://www.tiendasjumbo.co/azucar-incauca-blanco-especial-2-5-kg/p",
+							"imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/185661-300-300?v=637813979739370000&width=300&height=300&aspect=true",
+							"priceWithoutDiscount": 14900,
+							"priceDiscounted": 11390,
+							"discountPercentage": "24",
+							"id": "26d57734-bb69-4f9a-bf2a-f9790ba9c89e",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "Incauca"
+						},
+						{
+							"name": "Azúcar Mayagüez Blanca 2.5 Kg",
+							"brandName": "Rebajon",
+							"totalMeasurementUnit": "2500 Gramos",
+							"priceMeasurement": "(Gramo a $ 5)",
+							"imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1125575-300-300?v=638252085841400000&width=300&height=300&aspect=true",
+							"productLink": "https://www.olimpica.com/azucar-mayaguez-bca-2-5kg/p",
+							"priceDiscounted": 12500,
+							"priceWithoutDiscount": null,
+							"discount": null,
+							"id": "ca7270c8-90aa-4526-8e6c-95713ffa4589",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "Mayagüez"
+						}
+					]
+				},
+				{
+					"products": [
+						{
+							"name": "Azúcar Blanco Especial Xispas 2",
+							"imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/15838476/Azucar-Blanco-Especial-EXITO-MARCA-PROPIA-2500-gr-3310410_a.jpg?v=638054937252030000",
+							"productLink": "https://www.exito.com/azucar-blanco-especial-exito-marca-propia-2500-gr-3096350/p",
+							"priceDiscounted": 10150,
+							"priceWithoutDiscount": 11960,
+							"discountPercentage": "No discount",
+							"pum": "Gr a $ 4",
+							"id": "bc604435-82a5-44b2-af38-adc97719aebe",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "EXITO MARCA PROPIA"
+						},
+						{
+							"name": "Azúcar Incauca blanca especial x2.5kg",
+							"link": "https://www.tiendasjumbo.co/azucar-incauca-blanco-especial-2-5-kg/p",
+							"imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/185661-300-300?v=637813979739370000&width=300&height=300&aspect=true",
+							"priceWithoutDiscount": 14900,
+							"priceDiscounted": 11390,
+							"discountPercentage": "24",
+							"id": "26d57734-bb69-4f9a-bf2a-f9790ba9c89e",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "Incauca"
+						},
+						{
+							"name": "Azúcar Providencia Blanca 2.5 Kg",
+							"brandName": "Providencia",
+							"totalMeasurementUnit": "2500 Gramos",
+							"priceMeasurement": "(Gramo a $ 4,37)",
+							"imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/615356-300-300?v=637626520835600000&width=300&height=300&aspect=true",
+							"productLink": "https://www.olimpica.com/azucar-providen-blanca--2-5-kg-7702104010307-73470/p",
+							"priceDiscounted": 10935,
+							"priceWithoutDiscount": 12150,
+							"discount": 10,
+							"id": "493097c1-1b34-48a4-9e19-dfe29f1b889a",
+							"quantity_package": null,
+							"quantity_unit": 2500,
+							"unit": "gramos",
+							"brand": "Providencia"
+						}
+					]
+				}
+			]
+		},
+		{
+			"productName": "Leche",
+			"results": [
+				{
+					"products": [
+						{
+							"name": "Leche Deslactosada ALPINA Bolsa x6und 1100ml(6600 ml)",
+							"imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/22541854/Leche-Deslactosada-Sixpack-En-Bolsa-X-11-Litros-Cu-576258_a.jpg?v=638488712070600000",
+							"productLink": "https://www.exito.com/leche-deslactosada-sixpack-en-bolsa-x-11-litros-cu-957267/p",
+							"priceDiscounted": 34180,
+							"priceWithoutDiscount": null,
+							"discountPercentage": "No discount",
+							"pum": "Ml a $ 5",
+							"id": "168e4c2a-1fad-4fc2-bef5-0198896c67d1",
+							"quantity_package": 6,
+							"quantity_unit": 1100,
+							"unit": "mililitros",
+							"brand": "ALPINA"
+						},
+						{
+							"name": "Leche deslactosada Alpina bolsa x6und x1100ml c-u",
+							"link": "https://www.tiendasjumbo.co/leche-deslactosada-alpina-bolsa-x-6und-x-1100ml/p",
+							"imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/192867-300-300?v=637814022421830000&width=300&height=300&aspect=true",
+							"priceWithoutDiscount": null,
+							"priceDiscounted": 34190,
+							"discountPercentage": "0",
+							"id": "9b641d15-44d9-4801-9d56-9684e024e30a",
+							"quantity_package": 6,
+							"quantity_unit": 6600,
+							"unit": "mililitros",
+							"brand": "Alpina"
+						},
+						{
+							"name": "Leche Uht Alpina Deslactosada 1,1 Lt X6 Unds",
+							"brandName": "Alpina",
+							"totalMeasurementUnit": "6600 Mililitros",
+							"priceMeasurement": "(Mililitro a $ 5,69)",
+							"imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1424120-300-300?v=638514009283870000&width=300&height=300&aspect=true",
+							"productLink": "https://www.olimpica.com/leche-uht-alpina-deslactosada-bolsa-11-l-x6-7702001029716-1478933/p",
+							"priceDiscounted": 37550,
+							"priceWithoutDiscount": null,
+							"discount": null,
+							"id": "3dcfd5a0-b63d-4314-abc5-70c67a994d82",
+							"quantity_package": 6,
+							"quantity_unit": 1100,
+							"unit": "mililitros",
+							"brand": "Alpina"
+						}
+					]
+				},
+				{
+					"products": [
+						{
+							"name": "Leche Deslactosada ALPINA Bolsa x6und 1100ml(6600 ml)",
+							"imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/22541854/Leche-Deslactosada-Sixpack-En-Bolsa-X-11-Litros-Cu-576258_a.jpg?v=638488712070600000",
+							"productLink": "https://www.exito.com/leche-deslactosada-sixpack-en-bolsa-x-11-litros-cu-957267/p",
+							"priceDiscounted": 34180,
+							"priceWithoutDiscount": null,
+							"discountPercentage": "No discount",
+							"pum": "Ml a $ 5",
+							"id": "168e4c2a-1fad-4fc2-bef5-0198896c67d1",
+							"quantity_package": 6,
+							"quantity_unit": 1100,
+							"unit": "mililitros",
+							"brand": "ALPINA"
+						},
+						{
+							"name": "Leche deslactosada Alpina bolsa x6und x1100ml c-u",
+							"link": "https://www.tiendasjumbo.co/leche-deslactosada-alpina-bolsa-x-6und-x-1100ml/p",
+							"imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/192867-300-300?v=637814022421830000&width=300&height=300&aspect=true",
+							"priceWithoutDiscount": null,
+							"priceDiscounted": 34190,
+							"discountPercentage": "0",
+							"id": "9b641d15-44d9-4801-9d56-9684e024e30a",
+							"quantity_package": 6,
+							"quantity_unit": 6600,
+							"unit": "mililitros",
+							"brand": "Alpina"
+						},
+						{
+							"name": "Leche Uht Alpina Entera 1,1 Lt X6 Unds",
+							"brandName": "Alpina",
+							"totalMeasurementUnit": "6600 Mililitros",
+							"priceMeasurement": "(Mililitro a $ 5,98)",
+							"imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1424140-300-300?v=638514011588400000&width=300&height=300&aspect=true",
+							"productLink": "https://www.olimpica.com/leche-uht-alpina-entera-bolsa-11-l-x6-7702001041411-1586145/p",
+							"priceDiscounted": 39500,
+							"priceWithoutDiscount": null,
+							"discount": null,
+							"id": "b4ebd7de-c3f6-40e0-8654-944d851a2611",
+							"quantity_package": 6,
+							"quantity_unit": 1100,
+							"unit": "mililitros",
+							"brand": "Alpina"
+						}
+					]
+				},
+				{
+					"products": [
+						{
+							"name": "Leche Deslactosada ALPINA Bolsa x6und 1100ml(6600 ml)",
+							"imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/22541854/Leche-Deslactosada-Sixpack-En-Bolsa-X-11-Litros-Cu-576258_a.jpg?v=638488712070600000",
+							"productLink": "https://www.exito.com/leche-deslactosada-sixpack-en-bolsa-x-11-litros-cu-957267/p",
+							"priceDiscounted": 34180,
+							"priceWithoutDiscount": null,
+							"discountPercentage": "No discount",
+							"pum": "Ml a $ 5",
+							"id": "168e4c2a-1fad-4fc2-bef5-0198896c67d1",
+							"quantity_package": 6,
+							"quantity_unit": 1100,
+							"unit": "mililitros",
+							"brand": "ALPINA"
+						},
+						{
+							"name": "Leche deslactosada Alpina bolsa x6und x1100ml c-u",
+							"link": "https://www.tiendasjumbo.co/leche-deslactosada-alpina-bolsa-x-6und-x-1100ml/p",
+							"imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/192867-300-300?v=637814022421830000&width=300&height=300&aspect=true",
+							"priceWithoutDiscount": null,
+							"priceDiscounted": 34190,
+							"discountPercentage": "0",
+							"id": "9b641d15-44d9-4801-9d56-9684e024e30a",
+							"quantity_package": 6,
+							"quantity_unit": 6600,
+							"unit": "mililitros",
+							"brand": "Alpina"
+						},
+						{
+							"name": "Leche Uht Alpina Deslactosada Descremada 1,1 Lt X6 Unds",
+							"brandName": "Alpina",
+							"totalMeasurementUnit": "6600 Mililitros",
+							"priceMeasurement": "(Mililitro a $ 6,15)",
+							"imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/835399-300-300?v=637885803292530000&width=300&height=300&aspect=true",
+							"productLink": "https://www.olimpica.com/leche-uht-alpina-deslactosada-descremada-bolsa-11l-x6-7702001053858-757308/p",
+							"priceDiscounted": 40600,
+							"priceWithoutDiscount": null,
+							"discount": null,
+							"id": "c2f0197e-8574-4d69-8bd1-954faccff010",
+							"quantity_package": 6,
+							"quantity_unit": 1100,
+							"unit": "mililitros",
+							"brand": "Alpina"
+						}
+					]
+				}
+			]
+		}
+	]
+}
