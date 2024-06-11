@@ -227,13 +227,17 @@ function Search() {
 	};
 	const halfScreenWidth = "50vw";
 	return (
-		<div className="font-text flex flex-col items-center justify-center text-center p-4">
+
+		<div>
+			<div className="flex justify-between mt-8 mr-8">
+				<div></div>
+				<Link to="/login">
+					<FaUser className="w-6 h-6 mr-4" />
+				</Link>
+			</div>
+			<div className="font-text flex flex-col items-center justify-center text-center p-4">
 			<header className="flex flex-col items-center justify-center w-full max-w-lg">
 				<img src="/images/logo.png" className="mt-10 w-60 md:w-80" alt="logo" />
-				{/* ICONO PERFIL */}
-				<Link to="/login">
-					<FaUser className="absolute top-2 right-2 text-2xl cursor-pointer mt-8 mr-8" />
-				</Link>
 
 				{/* CUADRO DE BUSQUEDA */}
 				<div className="relative mt-8 w-full">
@@ -380,6 +384,9 @@ function Search() {
 				</div>
 			</div>
 		</div>
+		</div>
+
+		
 	);
 }
 
