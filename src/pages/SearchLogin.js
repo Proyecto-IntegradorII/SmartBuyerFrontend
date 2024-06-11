@@ -74,7 +74,7 @@ function Search() {
 		event.preventDefault();
 		setLoading(true);
 		try {
-			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_create_products_list", {
+			const response = await fetch("https://smartbuyerbackendmain.onrender.com/gpt_create_products_list", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -140,7 +140,7 @@ function Search() {
 			const formData = new FormData();
 			formData.append("audio", audioBlob, "recording.webm");
 
-			const response = await fetch("https://smart-buyer-bf8t.onrender.com/transcribes", {
+			const response = await fetch("https://smartbuyerbackendmain.onrender.com/transcribes", {
 				method: "POST",
 				body: formData,
 			});

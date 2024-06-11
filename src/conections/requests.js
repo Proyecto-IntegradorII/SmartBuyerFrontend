@@ -2,7 +2,7 @@
 //Usar Authorization: `Bearer ${token}` en el header de los fetch
 
 //Usar API_URL de vercel antes de hacer pull request a main para hacer el despliegue
-const API_URL = "https://smart-buyer-bf8t.onrender.com";
+const API_URL = "https://smartbuyerbackendmain.onrender.com";
 //Usar la API_URL del puerto 9000 si se va a trabajar local
 //const API_URL = "http://localhost:9000";
 

@@ -33,7 +33,7 @@ function Search() {
 	
 		setLoading(true);
 		try {
-			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_create_products_list", {
+			const response = await fetch("https://smartbuyerbackendmain.onrender.com/gpt_create_products_list", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -83,7 +83,7 @@ function Search() {
 		let stringResultado = lista.join(', ');
 		console.log('esta es la lista ', stringResultado)
 		try {
-			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_confirm_products_list", {
+			const response = await fetch("https://smartbuyerbackendmain.onrender.com/gpt_confirm_products_list", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -113,7 +113,7 @@ function Search() {
 		const data = JSON.parse(datos);
 		console.log('despues de parse ', data)
 		
-		fetch("https://smart-buyer-bf8t.onrender.com/scraping", {
+		fetch("https://smartbuyerbackendmain.onrender.com/scraping", {
 			method: "POST",
 			headers: {
 			  "Content-Type": "application/json"
@@ -179,7 +179,7 @@ function Search() {
 			const formData = new FormData();
 			formData.append("audio", audioBlob, "recording.webm");
 
-			const response = await fetch("https://smart-buyer-bf8t.onrender.com/transcribes", {
+			const response = await fetch("https://smartbuyerbackendmain.onrender.com/transcribes", {
 				method: "POST",
 				body: formData,
 			});
