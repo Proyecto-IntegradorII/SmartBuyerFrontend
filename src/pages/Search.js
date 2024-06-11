@@ -11,7 +11,7 @@ function Search() {
 	const [estadoEdit, setEstadoEdit] = useState("Edit");
 	const [editIndex, setEditIndex] = useState(null);
 	const [editValue, setEditValue] = useState("");
-	const [lista, setLista] = useState(["carne", "pollo"]);
+	const [lista, setLista] = useState([]);
 	const [listaScrapping, setlistaScrapping] = useState([]);
 	const [isRecording, setIsRecording] = useState(false);
 	const [isProcessing, setIsProcessing] = useState(false);
@@ -20,7 +20,11 @@ function Search() {
 	const mediaRecorderRef = useRef(null);
 	const audioChunksRef = useRef([]);
 	const [loading, setLoading] = useState(false);
+	const [loading2, setLoading2] = useState(false);
+
 	const [isAnalyzed, setIsAnalyzed] = useState(false);
+	const [isAnalyzedBusqueda, setIsAnalyzedBusqueda] = useState(false);
+
 	const navigate = useNavigate(); 
 
 	const API_URL = "https://smartbuyerbackend-production.up.railway.app";
@@ -87,6 +91,7 @@ function Search() {
 	};
 
 	const handleSubmitOpenGpt = async (event) => {
+		setLoading2(true);
 		event.preventDefault();
 		setLoading(true);
 		// Convertir el array en un string separado por comas
@@ -119,6 +124,7 @@ function Search() {
 	};
 
 	const webScrapping = async (datos) => {
+		
 		console.log("estos son los datos ", datos);
 		const data = JSON.parse(datos);
 		console.log("Iniciando web scraping ", data);
@@ -148,6 +154,7 @@ function Search() {
 	useEffect(() => {
         console.log("Estado actualizado de listaScrapping:", listaScrapping);
 		if (listaScrapping.length > 0) {
+			localStorage.setItem("productos", JSON.stringify(listaScrapping));
         navigate('/results');
     }
     }, [listaScrapping]);
@@ -340,6 +347,26 @@ function Search() {
 						>
 							<img src="/images/logo.png" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
 							<p style={{ margin: 0 }}>Evaluando tu lista de mercado...</p>
+						</div>
+					)}
+										{loading2 && (
+						<div
+							style={{
+								position: "fixed",
+								top: "50%",
+								left: "50%",
+								transform: "translate(-50%, -50%)",
+								backgroundColor: "rgba(255, 255, 255, 0.8)",
+								padding: `calc(${halfScreenWidth} / 6)`,
+								borderRadius: "10px",
+								boxShadow: "0 0 100px rgba(0, 0, 0, 0.2)",
+								fontSize: "24px",
+							}}
+						>
+						<img src="/images/logo.png" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
+
+							<img src="/images/carga.gif" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
+							<p style={{ margin: 0 }}>Procesando tu lista de mercado...</p>
 						</div>
 					)}
 					<p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>

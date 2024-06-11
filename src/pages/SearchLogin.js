@@ -9,7 +9,7 @@ function Search() {
 	const [estadoEdit, setEstadoEdit] = useState("Edit");
 	const [editIndex, setEditIndex] = useState(null);
 	const [editValue, setEditValue] = useState("");
-	const [lista, setLista] = useState(["carne", "pollo"]);
+	const [lista, setLista] = useState([]);
 	const [isRecording, setIsRecording] = useState(false);
 	const [isProcessing, setIsProcessing] = useState(false);
 	const [audioUrl, setAudioUrl] = useState(null);
@@ -22,6 +22,7 @@ function Search() {
 	const [titles, setTitles] = useState([]);
 	const [isAnalyzed, setIsAnalyzed] = useState(false);
 	const [listaScrapping, setlistaScrapping] = useState([]);
+	const [loading2, setLoading2] = useState(false);
 
 
 	const API_URL = "https://smartbuyerbackend-production.up.railway.app";
@@ -310,6 +311,7 @@ function Search() {
 	};
 	const handleSubmitOpenGpt = async (event) => {
 		event.preventDefault();
+		setLoading2(true);
 		setLoading(true);
 		// Convertir el array en un string separado por comas
 		let stringResultado = lista.join(", ");
@@ -474,6 +476,26 @@ function Search() {
 						<p style={{ margin: 0 }}>Evaluando tu lista de mercado...</p>
 					</div>
 				)}
+														{loading2 && (
+						<div
+							style={{
+								position: "fixed",
+								top: "50%",
+								left: "50%",
+								transform: "translate(-50%, -50%)",
+								backgroundColor: "rgba(255, 255, 255, 0.8)",
+								padding: `calc(${halfScreenWidth} / 6)`,
+								borderRadius: "10px",
+								boxShadow: "0 0 100px rgba(0, 0, 0, 0.2)",
+								fontSize: "24px",
+							}}
+						>
+						<img src="/images/logo.png" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
+
+							<img src="/images/carga.gif" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
+							<p style={{ margin: 0 }}>Procesando tu lista de mercado...</p>
+						</div>
+					)}
 				<p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>
 				{isAnalyzed && (
                 lista.map((texto, index) => (
