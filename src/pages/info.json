@@ -1,260 +1,162 @@
 {
     "response": [
-        {
-            "productName": "leche",
-            "results": [
-                {
-                    "products": [
-                        {
-                            "name": "Leche 6 Und Deslactosada   ALQUERIA 6600 ml",
-                            "imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/19739688/Sixpack-De-Leche-Deslactosada-X-1100-Ml-Cu-176230_a.jpg?v=638308594036670000",
-                            "productLink": "https://www.exito.com/sixpack-de-leche-deslactosada-x-1100-ml-cu-414455/p",
-                            "priceDiscounted": 15000,
-                            "priceWithoutDiscount": null,
-                            "discountPercentage": "No discount",
-                            "pum": "Ml a $ 5",
-                            "id": "102768c2-1145-4ad2-8570-66a66d804dc3",
-                            "quantity_package": 6,
-                            "quantity_unit": 1100,
-                            "unit": "mililitros",
-                            "brand": "ALQUERIA",
-                            "finalPrice": 37300
-                        },
-                        {
-                            "name": "Leche entera ",
-                            "link": "https://www.tiendasjumbo.co/leche-colanta-entera-bol-uht-x-6-und-x-1000ml-c-u/p",
-                            "imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/487649-300-300?v=638201012781000000&width=300&height=300&aspect=true",
-                            "priceWithoutDiscount": 29000,
-                            "priceDiscounted": 23509,
-                            "discountPercentage": "17",
-                            "brandName": "COLANTA",
-                            "id": "af1bbffb-1aad-446d-b226-affb778bf291",
-                            "quantity_package": 6,
-                            "quantity_unit": 6000,
-                            "unit": "mililitros",
-                            "brand": "Colanta",
-                            "finalPrice": 22990
-                        },
-                        {
-                            "name": "Leche Entera Olimpica 800 Ml X6 Unds",
-                            "brandName": "Sin Marca",
-                            "imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/900410-300-300?v=637992009277400000&width=300&height=300&aspect=true",
-                            "productLink": "https://www.olimpica.com/leche-uht-olimpica-ent-bsa-800ml-x6/p",
-                            "priceDiscounted": 18000,
-                            "priceWithoutDiscount": null,
-                            "discount": null,
-                            "id": "5c9d7f59-d9a4-44d1-9f76-c54d601b1659",
-                            "quantity_package": 6,
-                            "quantity_unit": 800,
-                            "unit": "mililitros",
-                            "brand": "Olimpica",
-                            "finalPrice": 18000
-                        }
-                    ]
-                },
-                {
-                    "products": [
-                        {
-                            "name": "Leche 6 Und Deslactosada   ALQUERIA 6600 ml",
-                            "imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/19739688/Sixpack-De-Leche-Deslactosada-X-1100-Ml-Cu-176230_a.jpg?v=638308594036670000",
-                            "productLink": "https://www.exito.com/sixpack-de-leche-deslactosada-x-1100-ml-cu-414455/p",
-                            "priceDiscounted": 37300,
-                            "priceWithoutDiscount": null,
-                            "discountPercentage": "No discount",
-                            "pum": "Ml a $ 5",
-                            "id": "102768c2-1145-4ad2-8570-66a66d804dc3",
-                            "quantity_package": 6,
-                            "quantity_unit": 1100,
-                            "unit": "mililitros",
-                            "brand": "ALQUERIA",
-                            "finalPrice": 37300
-                        },
-                        {
-                            "name": "Leche entera Colanta bolsa x6und x1000ml c-u",
-                            "link": "https://www.tiendasjumbo.co/leche-colanta-entera-bol-uht-x-6-und-x-1000ml-c-u/p",
-                            "imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/487649-300-300?v=638201012781000000&width=300&height=300&aspect=true",
-                            "priceWithoutDiscount": 27590,
-                            "priceDiscounted": 22990,
-                            "discountPercentage": "17",
-                            "brandName": "COLANTA",
-                            "id": "af1bbffb-1aad-446d-b226-affb778bf291",
-                            "quantity_package": 6,
-                            "quantity_unit": 6000,
-                            "unit": "mililitros",
-                            "brand": "Colanta",
-                            "finalPrice": 22990
-                        },
-                        {
-                            "name": "Leche Entera Medalla De Oro 900 ML X6 Unds",
-                            "brandName": "Medalla De Oro",
-                            "totalMeasurementUnit": "5400 Mililitros",
-                            "priceMeasurement": "(Mililitro a $ 4,24)",
-                            "imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1387837-300-300?v=638493936022400000&width=300&height=300&aspect=true",
-                            "productLink": "https://www.olimpica.com/leche-uht-medalla-oro-entera-900ml-x6-7701008629332-2146935/p",
-                            "priceDiscounted": 22880,
-                            "priceWithoutDiscount": null,
-                            "discount": null,
-                            "id": "9825f4ba-ca84-46f0-b198-9015515957a7",
-                            "quantity_package": 6,
-                            "quantity_unit": 900,
-                            "unit": "mililitros",
-                            "brand": "Medalla De Oro",
-                            "finalPrice": 22880
-                        }
-                    ]
-                },
-                {
-                    "products": [
-                        {
-                            "name": "Leche 6 Und Deslactosada   ALQUERIA 6600 ml",
-                            "imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/19739688/Sixpack-De-Leche-Deslactosada-X-1100-Ml-Cu-176230_a.jpg?v=638308594036670000",
-                            "productLink": "https://www.exito.com/sixpack-de-leche-deslactosada-x-1100-ml-cu-414455/p",
-                            "priceDiscounted": 37300,
-                            "priceWithoutDiscount": null,
-                            "discountPercentage": "No discount",
-                            "pum": "Ml a $ 5",
-                            "id": "102768c2-1145-4ad2-8570-66a66d804dc3",
-                            "quantity_package": 6,
-                            "quantity_unit": 1100,
-                            "unit": "mililitros",
-                            "brand": "ALQUERIA",
-                            "finalPrice": 37300
-                        },
-                        {
-                            "name": "Leche entera Colanta bolsa x6und x1000ml c-u",
-                            "link": "https://www.tiendasjumbo.co/leche-colanta-entera-bol-uht-x-6-und-x-1000ml-c-u/p",
-                            "imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/487649-300-300?v=638201012781000000&width=300&height=300&aspect=true",
-                            "priceWithoutDiscount": 27590,
-                            "priceDiscounted": 22990,
-                            "discountPercentage": "17",
-                            "brandName": "COLANTA",
-                            "id": "af1bbffb-1aad-446d-b226-affb778bf291",
-                            "quantity_package": 6,
-                            "quantity_unit": 6000,
-                            "unit": "mililitros",
-                            "brand": "Colanta",
-                            "finalPrice": 22990
-                        },
-                        {
-                            "name": "Leche Uht Alpina Deslactosada 1,1 Lt X6 Unds",
-                            "brandName": "Alpina",
-                            "totalMeasurementUnit": "6600 Mililitros",
-                            "priceMeasurement": "(Mililitro a $ 5,69)",
-                            "imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1424120-300-300?v=638514009283870000&width=300&height=300&aspect=true",
-                            "productLink": "https://www.olimpica.com/leche-uht-alpina-deslactosada-bolsa-11-l-x6-7702001029716-1478933/p",
-                            "priceDiscounted": 37550,
-                            "priceWithoutDiscount": null,
-                            "discount": null,
-                            "id": "142291e6-3ed9-44cb-97e7-ce9797a65e17",
-                            "quantity_package": 6,
-                            "quantity_unit": 660,
-                            "unit": "mililitros",
-                            "brand": "Alpina",
-                            "finalPrice": 37550
-                        }
-                    ]
-                },
-                {
-                    "products": [
-                        {
-                            "name": "Leche 6 Und Deslactosada   ALQUERIA 6600 ml",
-                            "imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/19739688/Sixpack-De-Leche-Deslactosada-X-1100-Ml-Cu-176230_a.jpg?v=638308594036670000",
-                            "productLink": "https://www.exito.com/sixpack-de-leche-deslactosada-x-1100-ml-cu-414455/p",
-                            "priceDiscounted": 37300,
-                            "priceWithoutDiscount": null,
-                            "discountPercentage": "No discount",
-                            "pum": "Ml a $ 5",
-                            "id": "102768c2-1145-4ad2-8570-66a66d804dc3",
-                            "quantity_package": 6,
-                            "quantity_unit": 1100,
-                            "unit": "mililitros",
-                            "brand": "ALQUERIA",
-                            "finalPrice": 37300
-                        },
-                        {
-                            "name": "Leche entera Colanta bolsa x6und x1000ml c-u",
-                            "link": "https://www.tiendasjumbo.co/leche-colanta-entera-bol-uht-x-6-und-x-1000ml-c-u/p",
-                            "imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/487649-300-300?v=638201012781000000&width=300&height=300&aspect=true",
-                            "priceWithoutDiscount": 27590,
-                            "priceDiscounted": 22990,
-                            "discountPercentage": "17",
-                            "brandName": "COLANTA",
-                            "id": "af1bbffb-1aad-446d-b226-affb778bf291",
-                            "quantity_package": 6,
-                            "quantity_unit": 6000,
-                            "unit": "mililitros",
-                            "brand": "Colanta",
-                            "finalPrice": 22990
-                        },
-                        {
-                            "name": "LECHE UHT COLANTA ENTERA 1000ML X6",
-                            "brandName": "Colanta",
-                            "imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1423492-300-300?v=638513138605800000&width=300&height=300&aspect=true",
-                            "productLink": "https://www.olimpica.com/leche-uht-colanta-entera-1000ml-x6/p",
-                            "priceDiscounted": 27550,
-                            "priceWithoutDiscount": null,
-                            "discount": null,
-                            "id": "896f8977-03ce-4f75-b1ad-e8267476e11e",
-                            "quantity_package": 6,
-                            "quantity_unit": 1000,
-                            "unit": "mililitros",
-                            "brand": "Colanta",
-                            "finalPrice": 27550
-                        }
-                    ]
-                },
-                {
-                    "products": [
-                        {
-                            "name": "Leche 6 Und Deslactosada   ALQUERIA 6600 ml",
-                            "imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/19739688/Sixpack-De-Leche-Deslactosada-X-1100-Ml-Cu-176230_a.jpg?v=638308594036670000",
-                            "productLink": "https://www.exito.com/sixpack-de-leche-deslactosada-x-1100-ml-cu-414455/p",
-                            "priceDiscounted": 37300,
-                            "priceWithoutDiscount": null,
-                            "discountPercentage": "No discount",
-                            "pum": "Ml a $ 5",
-                            "id": "102768c2-1145-4ad2-8570-66a66d804dc3",
-                            "quantity_package": 6,
-                            "quantity_unit": 1100,
-                            "unit": "mililitros",
-                            "brand": "ALQUERIA",
-                            "finalPrice": 37300
-                        },
-                        {
-                            "name": "Leche Alqueria original pague 5 lleve 6 x1100ml c/u",
-                            "link": "https://www.tiendasjumbo.co/leche-alqueria-original-pague-5-lleve-6x1100ml-c-u/p",
-                            "imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/541544-300-300?v=638343699509400000&width=300&height=300&aspect=true",
-                            "priceWithoutDiscount": null,
-                            "priceDiscounted": 29590,
-                            "discountPercentage": "0",
-                            "brandName": "ALQUERIA",
-                            "id": "e4e2f8ce-2597-4ea5-b3de-79a5e19fbf84",
-                            "quantity_package": 6,
-                            "quantity_unit": 6600,
-                            "unit": "mililitros",
-                            "brand": "Alqueria",
-                            "finalPrice": 29590
-                        },
-                        {
-                            "name": "Leche Uht Alpina Deslactosada 1,1 Lt X6 Unds",
-                            "brandName": "Alpina",
-                            "totalMeasurementUnit": "6600 Mililitros",
-                            "priceMeasurement": "(Mililitro a $ 5,69)",
-                            "imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1424120-300-300?v=638514009283870000&width=300&height=300&aspect=true",
-                            "productLink": "https://www.olimpica.com/leche-uht-alpina-deslactosada-bolsa-11-l-x6-7702001029716-1478933/p",
-                            "priceDiscounted": 37550,
-                            "priceWithoutDiscount": null,
-                            "discount": null,
-                            "id": "142291e6-3ed9-44cb-97e7-ce9797a65e17",
-                            "quantity_package": 6,
-                            "quantity_unit": 660,
-                            "unit": "mililitros",
-                            "brand": "Alpina",
-                            "finalPrice": 37550
-                        }
-                    ]
-                }
+      {
+        "productName": "Azúcar",
+        "results": [
+          {
+            "products": [
+              {
+                "name": "Azúcar Blanco Especial EXITO MARCA PROPIA 2500 gr",
+                "imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/15838476/Azucar-Blanco-Especial-EXITO-MARCA-PROPIA-2500-gr-3310410_a.jpg?v=638054937252030000",
+                "productLink": "https://www.exito.com/azucar-blanco-especial-exito-marca-propia-2500-gr-3096350/p",
+                "priceDiscounted": 11380,
+                "priceWithoutDiscount": 11960,
+                "discountPercentage": "No discount",
+                "pum": "Gr a $ 4",
+                "id": "79f50c8f-347c-4f1b-9939-c4aa14756fab",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "EXITO MARCA PROPIA",
+                "finalPrice": 11380
+              },
+              {
+                "name": "Azúcar Riopaila blanca x2500g",
+                "link": "https://www.tiendasjumbo.co/azucar-blanco-riopaila-x-2500g/p",
+                "imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/185659-300-300?v=637813979734070000&width=300&height=300&aspect=true",
+                "priceWithoutDiscount": null,
+                "priceDiscounted": 10690,
+                "discountPercentage": "0",
+                "brandName": "RIOPAILA",
+                "id": "754da7a3-4ba4-4c84-85c5-544d1a0f4dd3",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "Riopaila",
+                "finalPrice": 10690
+              },
+              {
+                "name": "Azúcar Manuelita 2.5 Kg",
+                "brandName": "Manuelita",
+                "totalMeasurementUnit": "2500 Gramos",
+                "priceMeasurement": "(Gramo a $ 5,12)",
+                "imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1049119-300-300?v=638120963297300000&width=300&height=300&aspect=true",
+                "productLink": "https://www.olimpica.com/azucar-manuelita-poliet-2-5-kg/p",
+                "priceDiscounted": 12800,
+                "priceWithoutDiscount": null,
+                "discount": null,
+                "id": "53a9bc11-69f0-4082-9047-763cdc1685c2",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "Manuelita",
+                "finalPrice": 12800
+              }
             ]
-        }
+          },
+          {
+            "products": [
+              {
+                "name": "Azúcar Blanco Especial EXITO MARCA PROPIA 2500 gr",
+                "imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/15838476/Azucar-Blanco-Especial-EXITO-MARCA-PROPIA-2500-gr-3310410_a.jpg?v=638054937252030000",
+                "productLink": "https://www.exito.com/azucar-blanco-especial-exito-marca-propia-2500-gr-3096350/p",
+                "priceDiscounted": 11380,
+                "priceWithoutDiscount": 11960,
+                "discountPercentage": "No discount",
+                "pum": "Gr a $ 4",
+                "id": "79f50c8f-347c-4f1b-9939-c4aa14756fab",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "EXITO MARCA PROPIA",
+                "finalPrice": 11380
+              },
+              {
+                "name": "Azúcar Riopaila blanca x2500g",
+                "link": "https://www.tiendasjumbo.co/azucar-blanco-riopaila-x-2500g/p",
+                "imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/185659-300-300?v=637813979734070000&width=300&height=300&aspect=true",
+                "priceWithoutDiscount": null,
+                "priceDiscounted": 10690,
+                "discountPercentage": "0",
+                "brandName": "RIOPAILA",
+                "id": "754da7a3-4ba4-4c84-85c5-544d1a0f4dd3",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "Riopaila",
+                "finalPrice": 10690
+              },
+              {
+                "name": "Azúcar Manuelita 2.5 Kg",
+                "brandName": "Manuelita",
+                "totalMeasurementUnit": "2500 Gramos",
+                "priceMeasurement": "(Gramo a $ 5,12)",
+                "imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1049119-300-300?v=638120963297300000&width=300&height=300&aspect=true",
+                "productLink": "https://www.olimpica.com/azucar-manuelita-poliet-2-5-kg/p",
+                "priceDiscounted": 12800,
+                "priceWithoutDiscount": null,
+                "discount": null,
+                "id": "53a9bc11-69f0-4082-9047-763cdc1685c2",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "Manuelita",
+                "finalPrice": 12800
+              }
+            ]
+          },
+          {
+            "products": [
+              {
+                "name": "Azúcar Blanco Especial EXITO MARCA PROPIA 2500 gr",
+                "imageUrl": "https://exitocol.vtexassets.com/arquivos/ids/15838476/Azucar-Blanco-Especial-EXITO-MARCA-PROPIA-2500-gr-3310410_a.jpg?v=638054937252030000",
+                "productLink": "https://www.exito.com/azucar-blanco-especial-exito-marca-propia-2500-gr-3096350/p",
+                "priceDiscounted": 11380,
+                "priceWithoutDiscount": 11960,
+                "discountPercentage": "No discount",
+                "pum": "Gr a $ 4",
+                "id": "79f50c8f-347c-4f1b-9939-c4aa14756fab",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "EXITO MARCA PROPIA",
+                "finalPrice": 11380
+              },
+              {
+                "name": "Azúcar Riopaila blanca x2500g",
+                "link": "https://www.tiendasjumbo.co/azucar-blanco-riopaila-x-2500g/p",
+                "imgSrc": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/185659-300-300?v=637813979734070000&width=300&height=300&aspect=true",
+                "priceWithoutDiscount": null,
+                "priceDiscounted": 10690,
+                "discountPercentage": "0",
+                "brandName": "RIOPAILA",
+                "id": "754da7a3-4ba4-4c84-85c5-544d1a0f4dd3",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "Riopaila",
+                "finalPrice": 10690
+              },
+              {
+                "name": "Azúcar Manuelita 2.5 Kg",
+                "brandName": "Manuelita",
+                "totalMeasurementUnit": "2500 Gramos",
+                "priceMeasurement": "(Gramo a $ 5,12)",
+                "imageUrl": "https://olimpica.vtexassets.com/arquivos/ids/1049119-300-300?v=638120963297300000&width=300&height=300&aspect=true",
+                "productLink": "https://www.olimpica.com/azucar-manuelita-poliet-2-5-kg/p",
+                "priceDiscounted": 12800,
+                "priceWithoutDiscount": null,
+                "discount": null,
+                "id": "53a9bc11-69f0-4082-9047-763cdc1685c2",
+                "quantity_package": null,
+                "quantity_unit": 2500,
+                "unit": "gramos",
+                "brand": "Manuelita",
+                "finalPrice": 12800
+              }
+            ]
+          }
+        ]
+      }
     ]
-}
+  }

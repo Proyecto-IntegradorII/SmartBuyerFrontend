@@ -136,6 +136,11 @@ function Search() {
 			console.log("Respuesta del servidor:", responseData);
 			setlistaScrapping(responseData.response[0].results);
 			console.log(listaScrapping);
+			// Guardar la respuesta en localStorage
+			localStorage.setItem("scrapingResults", JSON.stringify(responseData));
+
+			// Navegar a la página de resultados
+			navigate('/results');
 		} catch (error) {
 			console.error("Error al hacer la solicitud:", error);
 		}

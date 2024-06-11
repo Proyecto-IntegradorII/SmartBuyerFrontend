@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { FaUser } from "react-icons/fa";
-import info from './info.json';
 
 const Results = () => {
   const navigate = useNavigate();
-  const [selectedProducts, setSelectedProducts] = useState(
-    info.response.map(product => product.results[0].products)
-  );
+  const [info, setInfo] = useState(null);  // Aquí se guardará la información del localStorage
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  useEffect(() => {
+    // Obtener los resultados del localStorage
+    const data = localStorage.getItem("scrapingResults");
+    if (data) {
+      const parsedData = JSON.parse(data);
+      setInfo(parsedData);
+      setSelectedProducts(parsedData.response.map(product => product.results[0].products));
+    }
+  }, []);
 
   const handleSelectProduct = (productIndex, storeIndex, columnIndex) => {
-    console.log("productIndex: " + productIndex);
-    console.log("storeIndex:" + storeIndex);
-    console.log("columnIndex:" + columnIndex);
     const newSelectedProducts = [...selectedProducts];
-    console.log("Paso 1: " + JSON.stringify(newSelectedProducts));
     const tempProduct = newSelectedProducts[productIndex][columnIndex];
-    console.log("Paso 2: " + JSON.stringify(tempProduct));
     newSelectedProducts[productIndex][columnIndex] = info.response[productIndex].results[storeIndex].products[columnIndex];
-    console.log("newSelectedProducts: " + JSON.stringify(newSelectedProducts))
-    console.log("Paso 3:" + JSON.stringify(newSelectedProducts[productIndex][columnIndex]))
     info.response[productIndex].results[storeIndex].products[columnIndex] = tempProduct;
-    console.log("Paso4: " + JSON.stringify(info.response[productIndex].results[storeIndex].products[columnIndex]));
     setSelectedProducts(newSelectedProducts);
   };
 
@@ -39,6 +39,10 @@ const Results = () => {
   const calculateTotal = (storeIndex) => {
     return selectedProducts.reduce((total, product) => total + product[storeIndex].priceDiscounted, 0);
   };
+
+  if (!info) {
+    return <div>Loading...</div>; // Muestra un mensaje de carga mientras se obtiene la información
+  }
 
   return (
     <div className="container mx-auto p-4 font-text">
@@ -73,7 +77,6 @@ const Results = () => {
         >
           <div className="image-name hidden">Olimpica</div>
         </div>
-
       </div>
 
       {info.response.map((product, productIndex) => {
@@ -129,7 +132,6 @@ const Results = () => {
                     return (
                       <div className='flex items-center justify-center mb-4' key={columnIndex}>
                         <div className='flex flex-col gap-2'>
-
                           <button
                             className="flex items-center justify-center"
                             onClick={() => handleSelectProduct(productIndex, storeIndex + 1, columnIndex)}
@@ -137,7 +139,6 @@ const Results = () => {
                             <img src="/images/check.png" alt="Seleccionar" className="h-6 w-6" />
                           </button>
                         </div>
-
                         <div className="flex flex-col items-center w-48">
                           <a
                             href={item.productLink || item.link}
