@@ -1,7 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef ,useEffect} from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 function Search() {
 	const [search, setSearch] = useState("");
@@ -9,7 +11,7 @@ function Search() {
 	const [estadoEdit, setEstadoEdit] = useState("Edit");
 	const [editIndex, setEditIndex] = useState(null);
 	const [editValue, setEditValue] = useState("");
-	const [lista, setLista] = useState(["carne", "pollo"]);
+	const [lista, setLista] = useState([]);
 	const [listaScrapping, setlistaScrapping] = useState([]);
 	const [isRecording, setIsRecording] = useState(false);
 	const [isProcessing, setIsProcessing] = useState(false);
@@ -18,11 +20,18 @@ function Search() {
 	const mediaRecorderRef = useRef(null);
 	const audioChunksRef = useRef([]);
 	const [loading, setLoading] = useState(false);
+	const [loading2, setLoading2] = useState(false);
+
+	const [isAnalyzed, setIsAnalyzed] = useState(false);
+	const [isAnalyzedBusqueda, setIsAnalyzedBusqueda] = useState(false);
+
+	const navigate = useNavigate(); 
 
 	const API_URL = "https://smartbuyerbackend-production.up.railway.app";
 
 	const handleSubmitOpenIA = async (event) => {
 		event.preventDefault();
+
 
 		if (!search.trim()) {
 			Swal.fire({
@@ -34,6 +43,7 @@ function Search() {
 		}
 
 		setLoading(true);
+		
 		try {
 			const response = await fetch(`${API_URL}/gpt_create_products_list`, {
 				method: "POST",
@@ -46,10 +56,12 @@ function Search() {
 			});
 
 			if (response.ok) {
+				setIsAnalyzed(true)
 				const formattedList = await response.json();
 				if (formattedList.lines && formattedList.lines.length > 0) {
 					console.log(formattedList);
 					setLista(formattedList.lines);
+					
 				} else {
 					Swal.fire({
 						icon: "error",
@@ -79,6 +91,7 @@ function Search() {
 	};
 
 	const handleSubmitOpenGpt = async (event) => {
+		setLoading2(true);
 		event.preventDefault();
 		setLoading(true);
 		// Convertir el array en un string separado por comas
@@ -96,8 +109,10 @@ function Search() {
 			});
 
 			if (response.ok) {
+				setIsAnalyzed(true);
 				const formattedList = await response.json();
 				console.log("esta es la 98 ", formattedList);
+	
 				webScrapping(formattedList.formattedData);
 				setLoading(false);
 			} else {
@@ -109,8 +124,8 @@ function Search() {
 	};
 
 	const webScrapping = async (datos) => {
+		
 		console.log("estos son los datos ", datos);
-
 		const data = JSON.parse(datos);
 		console.log("Iniciando web scraping ", data);
 
@@ -127,11 +142,23 @@ function Search() {
 			console.log("Respuesta del servidor:", responseData);
 			setlistaScrapping(responseData.response[0].results);
 			console.log(listaScrapping);
+			// Guardar la respuesta en localStorage
+			localStorage.setItem("scrapingResults", JSON.stringify(responseData));
+
+			// Navegar a la página de resultados
+			navigate('/results');
 		} catch (error) {
 			console.error("Error al hacer la solicitud:", error);
 		}
 	};
-
+	useEffect(() => {
+        console.log("Estado actualizado de listaScrapping:", listaScrapping);
+		if (listaScrapping.length > 0) {
+			localStorage.setItem("productos", JSON.stringify(listaScrapping));
+        navigate('/results');
+    }
+    }, [listaScrapping]);
+	
 	const handleStartRecording = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -322,36 +349,63 @@ function Search() {
 							<p style={{ margin: 0 }}>Evaluando tu lista de mercado...</p>
 						</div>
 					)}
-					<p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>
-					{lista.map((texto, index) => (
-						<div key={index} className="flex items-center mt-4 w-full">
-							<input
-								type="text"
-								className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
-								value={editIndex === index ? editValue : texto}
-								readOnly={editIndex !== index}
-								onChange={(e) => setEditValue(e.target.value)}
-							/>
-							<FaEdit
-								className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
-								onClick={() => handleEdit(index, texto)}
-								aria-label={estadoEdit}
-							/>
-							<FaTrash
-								className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
-								onClick={() => handleDelete(index)}
-								aria-label="Delete"
-								data-testid="delete-icon"
-							/>
+										{loading2 && (
+						<div
+							style={{
+								position: "fixed",
+								top: "50%",
+								left: "50%",
+								transform: "translate(-50%, -50%)",
+								backgroundColor: "rgba(255, 255, 255, 0.8)",
+								padding: `calc(${halfScreenWidth} / 6)`,
+								borderRadius: "10px",
+								boxShadow: "0 0 100px rgba(0, 0, 0, 0.2)",
+								fontSize: "24px",
+							}}
+						>
+						<img src="/images/logo.png" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
+
+							<img src="/images/carga.gif" className="mt-10 w-40 sm:w-60 md:w-80" alt="logo" />
+							<p style={{ margin: 0 }}>Procesando tu lista de mercado...</p>
 						</div>
-					))}
-					<button
-						className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
-						type="submit"
-						onClick={(event) => handleSubmitOpenGpt(event)}
-					>
-						Buscar
-					</button>
+					)}
+ <>
+            {isAnalyzed && (
+                <>
+                    <p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>
+                    {lista.map((texto, index) => (
+                        <div key={index} className="flex items-center mt-4 w-full">
+                            <input
+                                type="text"
+                                className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
+                                value={editIndex === index ? editValue : texto}
+                                readOnly={editIndex !== index}
+                                onChange={(e) => setEditValue(e.target.value)}
+                            />
+                            <FaEdit
+                                className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
+                                onClick={() => handleEdit(index, texto)}
+                                aria-label={estadoEdit}
+                            />
+                            <FaTrash
+                                className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
+                                onClick={() => handleDelete(index)}
+                                aria-label="Delete"
+                                data-testid="delete-icon"
+                            />
+                        </div>
+                    ))}
+                    <button
+                        className="boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
+                        type="submit"
+                        onClick={handleSubmitOpenGpt}
+                    >
+                        Buscar
+                    </button>
+                </>
+            )}
+        </>
+  
 				</header>
 
 				{/* FOOTER */}
@@ -367,7 +421,7 @@ function Search() {
 					</div>
 					<div
 						className="image-box w-24 h-24 sm:w-40 sm:h-40 bg-center bg-cover rounded-3xl shadow-lg"
-						style={{ backgroundImage: "url(/images/D1.jpg)" }}
+						style={{ backgroundImage: "url(/images/Olimpical.png)" }}
 					>
 						<div className="image-name hidden">D1</div>
 					</div>
