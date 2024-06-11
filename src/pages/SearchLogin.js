@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { postQuery, getQueries, getQuery } from "../conections/requests";
 function Search() {
@@ -21,24 +21,24 @@ function Search() {
 	const [selectedValue, setSelectedValue] = useState("");
 	const [titles, setTitles] = useState([]);
 
+	const API_URL = "https://smartbuyerbackend-production.up.railway.app";
+
 	// Función para hacer la solicitud a la API
 	const fetchUserQueries = async () => {
 		try {
-			const user_id_saved_in_local_storage = localStorage.getItem("user_id")
+			const user_id_saved_in_local_storage = localStorage.getItem("user_id");
 			const data = await getQueries(user_id_saved_in_local_storage);
-			setEdit(false)
-			setEstadoEdit(null)
-			setEditIndex(null)
-			setEditValue("")
+			setEdit(false);
+			setEstadoEdit(null);
+			setEditIndex(null);
+			setEditValue("");
 			// Extraer los títulos de la respuesta
-			const titles = data.map(query => query.title);
+			const titles = data.map((query) => query.title);
 
 			// Actualizar el estado con los títulos
 			setTitles(titles);
-
-
 		} catch (error) {
-			console.error('Error fetching user queries:', error);
+			console.error("Error fetching user queries:", error);
 			Swal.fire(`No se pudo obtener tus búsquedas`);
 		}
 	};
@@ -54,14 +54,13 @@ function Search() {
 		// Función para hacer la solicitud a la API
 		const fetchUserQuery = async () => {
 			try {
-				const user_id_saved_in_local_storage = localStorage.getItem("user_id")
+				const user_id_saved_in_local_storage = localStorage.getItem("user_id");
 				const data = await getQuery(user_id_saved_in_local_storage, event.target.value);
 
-				setSearch(data.text)
-				setLista(Object.values(data.object))
-
+				setSearch(data.text);
+				setLista(Object.values(data.object));
 			} catch (error) {
-				console.error('Error fetching user query:', error);
+				console.error("Error fetching user query:", error);
 				Swal.fire(`No se pudo obtener tu búsqueda`);
 			}
 		};
@@ -74,7 +73,7 @@ function Search() {
 		event.preventDefault();
 		setLoading(true);
 		try {
-			const response = await fetch("https://smart-buyer-bf8t.onrender.com/gpt_create_products_list", {
+			const response = await fetch(`${API_URL}/gpt_create_products_list`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -140,7 +139,7 @@ function Search() {
 			const formData = new FormData();
 			formData.append("audio", audioBlob, "recording.webm");
 
-			const response = await fetch("https://smart-buyer-bf8t.onrender.com/transcribes", {
+			const response = await fetch(`${API_URL}/transcribes`, {
 				method: "POST",
 				body: formData,
 			});
@@ -188,13 +187,13 @@ function Search() {
 	};
 
 	const handleButtonSearch = async (event) => {
-		console.log("button search clicked")
+		console.log("button search clicked");
 		Swal.fire({
 			title: "¿Quieres guardar esta búsqueda?",
 			showDenyButton: true,
 			showCancelButton: true,
 			confirmButtonText: "Guardar",
-			denyButtonText: `No Guardar`
+			denyButtonText: `No Guardar`,
 		}).then(async (result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
@@ -209,12 +208,12 @@ function Search() {
 						if (!value) {
 							return "Necesitas escribir algo!";
 						}
-					}
+					},
 				});
-				const myObject = {}
+				const myObject = {};
 				lista.forEach((item, index) => {
-					myObject[index] = item
-				})
+					myObject[index] = item;
+				});
 				if (title) {
 					const myResponse = async () => {
 						// Realizar solicitud de inicio de sesión utilizando los datos del formulario
@@ -234,16 +233,16 @@ function Search() {
 						} else {
 							Swal.fire(`No se pudo guardar tu búsqueda: ${title}`);
 						}
-					}
-					const a = await myResponse()
-					console.log(a)
+					};
+					const a = await myResponse();
+					console.log(a);
 				}
-			} else if (result.isDenied) {//si no se quiere guardar la busqueda
+			} else if (result.isDenied) {
+				//si no se quiere guardar la busqueda
 				Swal.fire("Colocar aqui la animacion de busqueda en vez de este anuncio", "", "info");
 			}
 		});
-
-	}
+	};
 
 	const halfScreenWidth = "50vw";
 	return (
@@ -259,7 +258,9 @@ function Search() {
 				>
 					<option value="">Seleccionar búsqueda guardada</option>
 					{titles.map((title, index) => (
-						<option key={index} value={title}>{title}</option>
+						<option key={index} value={title}>
+							{title}
+						</option>
 					))}
 				</select>
 				{/* ICONO PERFIL */}
@@ -328,7 +329,6 @@ function Search() {
 						</div>
 					</div>
 				)}
-
 
 				<button
 					className=" mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
