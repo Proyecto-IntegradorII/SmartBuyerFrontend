@@ -496,38 +496,43 @@ function Search() {
 							<p style={{ margin: 0 }}>Procesando tu lista de mercado...</p>
 						</div>
 					)}
-				<p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>
-				{isAnalyzed && (
-                lista.map((texto, index) => (
-                    <div key={index} className="flex items-center mt-4 w-full">
-                        <input
-                            type="text"
-                            className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
-                            value={editIndex === index ? editValue : texto}
-                            readOnly={editIndex !== index}
-                            onChange={(e) => setEditValue(e.target.value)}
-                        />
-                        <FaEdit
-                            className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
-                            onClick={() => handleEdit(index, texto)}
-                            aria-label={estadoEdit}
-                        />
-                        <FaTrash
-                            className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
-                            onClick={() => handleDelete(index)}
-                            aria-label="Delete"
-                            data-testid="delete-icon"
-                        />
-                    </div>
-                ))
-            )}
-				<button
-					className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
-					type="submit"
-					onClick={(event) => handleButtonSearch(event)} // Invocar la función dentro de una función anónima
-				>
-					Buscar
-				</button>
+<>
+  {isAnalyzed && (
+    <>
+      <p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>
+      {lista.map((texto, index) => (
+        <div key={index} className="flex items-center mt-4 w-full">
+          <input
+            type="text"
+            className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
+            value={editIndex === index ? editValue : texto}
+            readOnly={editIndex !== index}
+            onChange={(e) => setEditValue(e.target.value)}
+          />
+          <FaEdit
+            className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
+            onClick={() => handleEdit(index, texto)}
+            aria-label={estadoEdit}
+          />
+          <FaTrash
+            className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
+            onClick={() => handleDelete(index)}
+            aria-label="Delete"
+            data-testid="delete-icon"
+          />
+        </div>
+      ))}
+      <button
+        className="boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
+        type="submit"
+        onClick={(event) => handleButtonSearch(event)}
+      >
+        Buscar
+      </button>
+    </>
+  )}
+</>
+
 			</header>
 
 			{/* FOOTER */}
