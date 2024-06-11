@@ -1,189 +1,101 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postLogin, postLoginGoogle, getPrueba } from "../conections/requests";
-import { Alert } from "../components/alerts/alerts";
+import { postLogin, postLoginGoogle } from "../conections/requests";
 import Swal from "sweetalert2";
 import HomeButton from "../utilities/HomeButton";
-import { GoogleLogin } from "@react-oauth/google";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const Login = () => {
-    const navigate = useNavigate(); // Hook de navegación
-    const [showAlert, setShowAlert] = useState(false); // Estado para mostrar/ocultar la alerta
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", contrasena: "" });
 
-    const [formData, setFormData] = useState({
-        email: "",
-        contrasena: "",
-    }); // Estado para almacenar los datos del formulario de inicio de sesión
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const lowercaseEmail = formData.email.toLowerCase();
+    const req_succesful = await postLogin({ ...formData, email: lowercaseEmail });
 
-    //MANEJAR EL LOGIN NORMAL (SIN GOOGLE)
-    const handleSubmit = (event) => {
-        event.preventDefault(); // Prevenir comportamiento de envío predeterminado
-        const lowercaseEmail = formData.email.toLowerCase(); // Convertir el campo de email a minúsculas
+    if (req_succesful === "Inicio de sesión exitoso") {
+      Swal.fire({
+        title: "Welcome!",
+        text: "Inicio de sesión exitoso!",
+        icon: "success",
+        customClass: { container: "font-text" },
+      });
+      navigate("/login/search");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: req_succesful,
+        customClass: { container: "font-text" },
+      });
+    }
+  };
 
-        console.log(formData); // Imprimir los datos del formulario en la consola
-        const myresponse = async () => {
-            // Realizar solicitud de inicio de sesión utilizando los datos del formulario
-            const req_succesful = await postLogin({
-                ...formData,
-                email: lowercaseEmail,
-            });
+  const handleGoogleLogin = async (credentialResponse) => {
+    const req_succesful = await postLoginGoogle({ credentialResponse });
 
-            console.log(req_succesful);
-            if (req_succesful === "Inicio de sesión exitoso") {
-                // Si las credenciales son correctas, mostrar una alerta de éxito y navegar a la página de inicio ("/home")
-                Swal.fire({
-                    title: "Welcome!",
-                    text: "You have succesfully been logged!",
-                    icon: "success",
-                    customClass: {
-                        container: "font-text",
-                    },
-                });
+    if (req_succesful === "Inicio de sesión exitoso") {
+      Swal.fire({
+        title: "Welcome!",
+        text: "Inicio de sesión exitoso!",
+        icon: "success",
+        customClass: { container: "font-text" },
+      });
+      navigate("/login/search");
+    }
+  };
 
-                navigate("/login/search");
-            } else {
-                // Si las credenciales son incorrectas, mostrar una alerta de error con el mensaje de error devuelto por la solicitud
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: req_succesful,
-                    customClass: {
-                        container: "font-text",
-                    },
-                });
-            }
-        };
-        myresponse(); // Ejecutar la función asíncrona myresponse
-    };
-
-    //MANEJAR EL LOGIN CON GOOGLE
-    const handleGoogleLogin = (credentialResponse) => {
-        console.log(credentialResponse); // Imprimir los datos del formulario en la consola
-        const myresponse = async () => {
-            // Realizar solicitud de inicio de sesión utilizando los datos del formulario
-            const req_succesful = await postLoginGoogle({
-                credentialResponse,
-            });
-
-            console.log(req_succesful);
-            if (req_succesful === "Inicio de sesión exitoso") {
-                // Si las credenciales son correctas, mostrar una alerta de éxito y navegar a la página de inicio ("/home")
-                Swal.fire({
-                    title: "Welcome!",
-                    text: "You have succesfully been logged!",
-                    icon: "success",
-                    customClass: {
-                        container: "font-text",
-                    },
-                });
-
-                navigate("/login/search");
-            }
-        };
-        myresponse(); // Ejecutar la función asíncrona myresponse
-    };
-
-    // Render de la pagina con sus componentes. Una imagen de fondo, un logo, y los campos necesarios para loguearse. Además del botón de submit y el botón que lleva a registro
-    return (
-        <div id="login" className="font-text">
-            {showAlert && <Alert />}
-
-            <div className="md:flex md:flex-row w-full md:h-screen">
-                {/* IMAGEN DE FONDO IZQUIERDA */}
-                <div className="hidden md:block md:w-1/2 lg:w-7/12 justify-center items-center h-full w-full">
-                    <img
-                        src={require("../media/logos/logo.jpg")}
-                        alt="Imagen de fondo"
-                        className="block w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* PARTE DERECHA */}
-                <form className="md:w-1/2 lg:w-5/12 justify-center" onSubmit={handleSubmit}>
-                    <div className="flex p-4 flex flex-col justify-center h-full w-full">
-                        {/* HOMEBUTTON */}
-                        <div className="flex self-end justify-end items-end pb-4 md:pr-[calc((100%-22rem)/2)]">
-                            <HomeButton />
-                        </div>
-
-                        {/* IMAGEN DEL LOGIN 
-                        <div className="flex justify-center mb-4">
-                            <img src={require("../media/iconos/luperca.png")} alt="Imagen en el top right" />
-                        </div>
-                        */}
-                        {/* CAMPO DE EMAIL, PASSWORD, BOTON DE LOGIN */}
-                        <div className="flex flex-col items-center justify-center">
-                            <input
-                                id="email"
-                                type="text"
-                                className="max-w-sm w-full h-full text-center border-2 rounded-3xl border focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
-                                placeholder="Email"
-                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            />
-                            <input
-                                id="password"
-                                type="password"
-                                className="max-w-sm w-full h-full text-center border-2 rounded-3xl border focus:outline-none mb-4 focus:border-custom-rojo focus:ring-0"
-                                placeholder="Password"
-                                onChange={(e) => setFormData({ ...formData, contrasena: e.target.value })}
-                            />
-
-                            <button
-                                id="submit"
-                                type="submit"
-                                className="max-w-sm bg-custom-rojo text-black w-full h-full text-center border-4 rounded-3xl border focus:outline-none py-2 mb-2"
-                                onSubmit={(e) => e.preventDefault()}
-                            >
-                                Login
-                            </button>
-                        </div>
-
-                        {/* ELEMENTOS DE LOGIN CON GOOGLE, RECUPERAR CONTRASENA Y REGISTRARSE */}
-                        <div className="flex flex-col items-center">
-                            <p className="mb-4">O continúa con</p>
-
-                            {/* LOGIN CON GOOGLE */}
-                            <div className="mb-8">
-                                <GoogleOAuthProvider clientId="1009519224600-3h16f1u41d28n6d8ssutnc7o8daorafn.apps.googleusercontent.com">
-                                    <GoogleLogin
-                                        onSuccess={(credentialResponse) => {
-                                            handleGoogleLogin(credentialResponse); // Pasar credentialResponse como argumento
-                                        }}
-                                        onError={() => {
-                                            console.log("Login Failed");
-                                        }}
-                                        theme="filled_blue"
-                                        shape="circle"
-                                        useOneTap
-                                    />
-                                </GoogleOAuthProvider>
-                            </div>
-                            {
-                                /**
-                                <button
-                                    id="recover"
-                                    className="p-2 underline"
-                                    onClick={() => navigate("/recoverpassword")}
-                                >
-                                    Recover password
-                                </button>                                 
-                                 */
-                            }
-
-                            <button
-                                id="navregistro"
-                                className="underline p-2"
-                                onClick={() => navigate("/register")}
-                            >
-                                Don't have an account?
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 font-text">
+      <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
+        {/* Left Section - Image */}
+        <div className="hidden md:block md:w-2/3">
+          <img
+            src={require("../media/logos/logo.jpg")}
+            alt="Background"
+            className="object-cover w-full h-full"
+          />
         </div>
-    );
+        {/* Right Section - Form */}
+        <div className="w-full md:w-1/2 p-8">
+          <div className="flex justify-end">
+          <HomeButton />
+          </div>
+          <h2 className="text-2xl font-bold text-center mb-8">Inicio de sesión</h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <input
+              id="email"
+              type="email"
+              placeholder="Correo"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+            <input
+              id="password"
+              type="password"
+              placeholder="Contraseña"
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              onChange={(e) => setFormData({ ...formData, contrasena: e.target.value })}
+            />
+            <button
+              type="submit"
+              className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-300"
+            >
+              Inicio de sesión
+            </button>
+          </form>
+          <div className="text-center mt-5">
+            <button
+              className="underline"
+              onClick={() => navigate("/register")}
+            >
+              ¿No tienes una cuenta?
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
