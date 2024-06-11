@@ -6,6 +6,7 @@ import SearchL from "./pages/SearchLogin";
 import SendText from "./chatGPT";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Results from "./pages/Results";
 export const AppRouter = () => {
 	return (
 		<BrowserRouter>
@@ -15,6 +16,7 @@ export const AppRouter = () => {
 				<Route path="/gpt" element={<SendText />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/results" element={<Results />} />
 			</Routes>
 		</BrowserRouter>
 	);

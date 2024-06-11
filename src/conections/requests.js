@@ -2,7 +2,7 @@
 //Usar Authorization: `Bearer ${token}` en el header de los fetch
 
 //Usar API_URL de vercel antes de hacer pull request a main para hacer el despliegue
-const API_URL = "https://smart-buyer-bf8t.onrender.com";
+const API_URL = "https://smartbuyerbackend-production.up.railway.app";
 //Usar la API_URL del puerto 9000 si se va a trabajar local
 //const API_URL = "http://localhost:9000";
 
@@ -37,7 +37,6 @@ export const postData = async (mydata) => {
 		// Handle network error
 	}
 };
-
 
 //POST para realizar el login de los usuarios
 export const postLogin = async (mydata) => {
@@ -118,7 +117,6 @@ export const postLoginGoogle = async (mydata) => {
 			localStorage.setItem("user_id", JSON.stringify(usuarioData.user_id));
 			localStorage.setItem("nombre_usuario", JSON.stringify(usuarioData.username));
 
-
 			return "Inicio de sesión exitoso";
 		} else {
 			const error = await response.json();
@@ -141,38 +139,38 @@ export const postQuery = async (myQuery) => {
 				"Content-Type": "application/json",
 				// Authorization: `Bearer ${token}`,
 			},
-			body: JSON.stringify(myQuery)
-		})
-		if (response.ok){
-			return "Query guardada con exito"
+			body: JSON.stringify(myQuery),
+		});
+		if (response.ok) {
+			return "Query guardada con exito";
 		}
 	} catch {
-		return "Error al guardar la query"
+		return "Error al guardar la query";
 	}
-}
+};
 
 //GET
 export const getQueries = async (user_id) => {
 	try {
-		const response = await fetch(`${API_URL}/get-all-queries-of-user/${user_id}`)
-		if (response.ok){
-			const server_response =  await response.json();
+		const response = await fetch(`${API_URL}/get-all-queries-of-user/${user_id}`);
+		if (response.ok) {
+			const server_response = await response.json();
 			return server_response;
 		}
 	} catch {
-		return "Error al obtener la query"
+		return "Error al obtener la query";
 	}
-}
+};
 
 //GET
-export const getQuery = async (user_id,title) => {
+export const getQuery = async (user_id, title) => {
 	try {
-		const response = await fetch(`${API_URL}/get-query/${user_id}/${title}`)
-		if (response.ok){
-			const server_response =  await response.json();
+		const response = await fetch(`${API_URL}/get-query/${user_id}/${title}`);
+		if (response.ok) {
+			const server_response = await response.json();
 			return server_response;
 		}
 	} catch {
-		return "Error al obtener la query"
+		return "Error al obtener la query";
 	}
-}
+};
