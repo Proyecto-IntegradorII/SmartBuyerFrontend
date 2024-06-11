@@ -1,7 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef ,useEffect} from "react";
 import { FaEdit, FaTrash, FaMicrophone, FaStopCircle, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 function Search() {
 	const [search, setSearch] = useState("");
@@ -18,11 +20,14 @@ function Search() {
 	const mediaRecorderRef = useRef(null);
 	const audioChunksRef = useRef([]);
 	const [loading, setLoading] = useState(false);
+	const [isAnalyzed, setIsAnalyzed] = useState(false);
+	const navigate = useNavigate(); 
 
 	const API_URL = "https://smartbuyerbackend-production.up.railway.app";
 
 	const handleSubmitOpenIA = async (event) => {
 		event.preventDefault();
+
 
 		if (!search.trim()) {
 			Swal.fire({
@@ -34,6 +39,7 @@ function Search() {
 		}
 
 		setLoading(true);
+		
 		try {
 			const response = await fetch(`${API_URL}/gpt_create_products_list`, {
 				method: "POST",
@@ -46,10 +52,12 @@ function Search() {
 			});
 
 			if (response.ok) {
+				setIsAnalyzed(true)
 				const formattedList = await response.json();
 				if (formattedList.lines && formattedList.lines.length > 0) {
 					console.log(formattedList);
 					setLista(formattedList.lines);
+					
 				} else {
 					Swal.fire({
 						icon: "error",
@@ -96,8 +104,10 @@ function Search() {
 			});
 
 			if (response.ok) {
+				setIsAnalyzed(true);
 				const formattedList = await response.json();
 				console.log("esta es la 98 ", formattedList);
+	
 				webScrapping(formattedList.formattedData);
 				setLoading(false);
 			} else {
@@ -110,7 +120,6 @@ function Search() {
 
 	const webScrapping = async (datos) => {
 		console.log("estos son los datos ", datos);
-
 		const data = JSON.parse(datos);
 		console.log("Iniciando web scraping ", data);
 
@@ -131,7 +140,13 @@ function Search() {
 			console.error("Error al hacer la solicitud:", error);
 		}
 	};
-
+	useEffect(() => {
+        console.log("Estado actualizado de listaScrapping:", listaScrapping);
+		if (listaScrapping.length > 0) {
+        navigate('/results');
+    }
+    }, [listaScrapping]);
+	
 	const handleStartRecording = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -323,28 +338,30 @@ function Search() {
 						</div>
 					)}
 					<p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>
-					{lista.map((texto, index) => (
-						<div key={index} className="flex items-center mt-4 w-full">
-							<input
-								type="text"
-								className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
-								value={editIndex === index ? editValue : texto}
-								readOnly={editIndex !== index}
-								onChange={(e) => setEditValue(e.target.value)}
-							/>
-							<FaEdit
-								className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
-								onClick={() => handleEdit(index, texto)}
-								aria-label={estadoEdit}
-							/>
-							<FaTrash
-								className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
-								onClick={() => handleDelete(index)}
-								aria-label="Delete"
-								data-testid="delete-icon"
-							/>
-						</div>
-					))}
+						{isAnalyzed && (
+                lista.map((texto, index) => (
+                    <div key={index} className="flex items-center mt-4 w-full">
+                        <input
+                            type="text"
+                            className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
+                            value={editIndex === index ? editValue : texto}
+                            readOnly={editIndex !== index}
+                            onChange={(e) => setEditValue(e.target.value)}
+                        />
+                        <FaEdit
+                            className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
+                            onClick={() => handleEdit(index, texto)}
+                            aria-label={estadoEdit}
+                        />
+                        <FaTrash
+                            className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
+                            onClick={() => handleDelete(index)}
+                            aria-label="Delete"
+                            data-testid="delete-icon"
+                        />
+                    </div>
+                ))
+            )}
 					<button
 						className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 						type="submit"

@@ -20,6 +20,9 @@ function Search() {
 	const [loading, setLoading] = useState(false);
 	const [selectedValue, setSelectedValue] = useState("");
 	const [titles, setTitles] = useState([]);
+	const [isAnalyzed, setIsAnalyzed] = useState(false);
+	const [listaScrapping, setlistaScrapping] = useState([]);
+
 
 	const API_URL = "https://smartbuyerbackend-production.up.railway.app";
 
@@ -84,6 +87,66 @@ function Search() {
 			});
 
 			if (response.ok) {
+				setIsAnalyzed(true)
+				const handleSubmitOpenIA = async (event) => {
+		event.preventDefault();
+
+
+		if (!search.trim()) {
+			Swal.fire({
+				icon: "warning",
+				title: "Campo vacío",
+				text: "Debe ingresar su mercado",
+			});
+			return;
+		}
+
+		setLoading(true);
+		try {
+			const response = await fetch(`${API_URL}/gpt_create_products_list`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					inputText: search,
+				}),
+			});
+
+			if (response.ok) {
+				
+				const formattedList = await response.json();
+				if (formattedList.lines && formattedList.lines.length > 0) {
+					console.log(formattedList);
+					setLista(formattedList.lines);
+					
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Sin resultados",
+						text: 'No se encontraron productos. Asegúrese de haber ingresado un producto válido. Por ejemplo: "Azúcar blanca 2.5kg, Café Aguila Roja 500 gramos, Leche bolsa 6 unidades 1 ml Alpina...".',
+					});
+				}
+				setLoading(false);
+			} else {
+				console.error("Error en la petición:", response.statusText);
+				Swal.fire({
+					icon: "error",
+					title: "Error en la petición",
+					text: `Hubo un problema con la solicitud: ${response.statusText}`,
+				});
+				setLoading(false);
+			}
+		} catch (error) {
+			console.error("Error al realizar la petición:", error);
+			Swal.fire({
+				icon: "error",
+				title: "Error al realizar la petición",
+				text: "Hubo un problema al realizar la solicitud. Por favor, inténtelo de nuevo.",
+			});
+			setLoading(false);
+		}
+	};
 				const formattedList = await response.json();
 				console.log(formattedList);
 				setLista(formattedList.lines);
@@ -234,14 +297,70 @@ function Search() {
 							Swal.fire(`No se pudo guardar tu búsqueda: ${title}`);
 						}
 					};
-					const a = await myResponse();
-					console.log(a);
+					await myResponse();
 				}
 			} else if (result.isDenied) {
-				//si no se quiere guardar la busqueda
-				Swal.fire("Colocar aqui la animacion de busqueda en vez de este anuncio", "", "info");
+				// si no se quiere guardar la busqueda
+				setLoading(true);
 			}
+	
+			// Aquí es donde se ejecuta handleSubmitOpenGpt después de manejar el diálogo de SweetAlert
+			await handleSubmitOpenGpt(event);
 		});
+	};
+	const handleSubmitOpenGpt = async (event) => {
+		event.preventDefault();
+		setLoading(true);
+		// Convertir el array en un string separado por comas
+		let stringResultado = lista.join(", ");
+		console.log("esta es la lista ", stringResultado);
+		try {
+			const response = await fetch(`${API_URL}/gpt_confirm_products_list`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					inputText: stringResultado,
+				}),
+			});
+	
+			if (response.ok) {
+				setIsAnalyzed(true);
+	
+				const formattedList = await response.json();
+				console.log("esta es la 98 ", formattedList);
+				webScrapping(formattedList.formattedData);
+				setLoading(false);
+			} else {
+				console.error("Error en la petición:", response.statusText);
+			}
+		} catch (error) {
+			console.error("Error al realizar la petición:", error);
+		}
+	};
+	const webScrapping = async (datos) => {
+		console.log("estos son los datos ", datos);
+
+		const data = JSON.parse(datos);
+		console.log("Iniciando web scraping ", data);
+
+		try {
+			const response = await fetch(`${API_URL}/scraping`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			});
+
+			const responseData = await response.json();
+			console.log("Respuesta del servidor:", responseData);
+			setlistaScrapping(responseData.response[0].results);
+			console.log(listaScrapping);
+		} catch (error) {
+			console.error("Error al hacer la solicitud:", error);
+		}
 	};
 
 	const halfScreenWidth = "50vw";
@@ -356,28 +475,30 @@ function Search() {
 					</div>
 				)}
 				<p className="text-lg sm:text-xl mt-4">Tu lista actualmente se ve así:</p>
-				{lista.map((texto, index) => (
-					<div key={index} className="flex items-center mt-4 w-full">
-						<input
-							type="text"
-							className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
-							value={editIndex === index ? editValue : texto}
-							readOnly={editIndex !== index}
-							onChange={(e) => setEditValue(e.target.value)}
-						/>
-						<FaEdit
-							className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
-							onClick={() => handleEdit(index, texto)}
-							aria-label={estadoEdit}
-						/>
-						<FaTrash
-							className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
-							onClick={() => handleDelete(index)}
-							aria-label="Delete"
-							data-testid="delete-icon"
-						/>
-					</div>
-				))}
+				{isAnalyzed && (
+                lista.map((texto, index) => (
+                    <div key={index} className="flex items-center mt-4 w-full">
+                        <input
+                            type="text"
+                            className="form-list w-full h-10 border border-orange-600 bg-zinc-200 text-lg sm:text-xl text-center rounded-lg"
+                            value={editIndex === index ? editValue : texto}
+                            readOnly={editIndex !== index}
+                            onChange={(e) => setEditValue(e.target.value)}
+                        />
+                        <FaEdit
+                            className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
+                            onClick={() => handleEdit(index, texto)}
+                            aria-label={estadoEdit}
+                        />
+                        <FaTrash
+                            className="text-lg sm:text-xl ml-2 sm:ml-4 cursor-pointer"
+                            onClick={() => handleDelete(index)}
+                            aria-label="Delete"
+                            data-testid="delete-icon"
+                        />
+                    </div>
+                ))
+            )}
 				<button
 					className=" boton mt-4 bg-[#e29500] hover:bg-[#cb8600] text-white text-xl rounded-lg w-fit px-4 h-10"
 					type="submit"
