@@ -128,7 +128,7 @@ test('envía texto de búsqueda a OpenIA y actualiza la lista', async () => {
 
   await waitFor(() => {
     expect(fetchMock).toHaveBeenCalledWith(
-      'https://smart-buyer-bf8t.onrender.com/transcribes',
+      'https://smartbuyerbackendmain.onrender.com/transcribes',
       expect.any(Object)
     );
   });

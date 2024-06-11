@@ -13,7 +13,7 @@ describe('API Requests', () => {
         const response = await postData({ username: 'testuser', email: 'test@example.com' });
 
         expect(response).toBe('Data submitted successfully');
-        expect(fetchMock).toHaveBeenCalledWith('https://smart-buyer-bf8t.onrender.com/register/user', expect.any(Object));
+        expect(fetchMock).toHaveBeenCalledWith('https://smartbuyerbackendmain.onrender.com/register/user', expect.any(Object));
     });
 
     /*test('postData handles error response', async () => {
